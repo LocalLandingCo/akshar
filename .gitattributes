@@ -1,0 +1,13 @@
+# Normalize line endings to LF in the repository regardless of platform.
+# Development happens on Windows, CI runs on Linux (tech-stack.md §3) —
+# this is what keeps a checkout identical on both.
+* text=auto eol=lf
+
+*.ico binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.webp binary
+*.avif binary
+*.gif binary
+*.svg text eol=lf

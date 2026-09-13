@@ -1,0 +1,371 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Literata:ital,opsz,wght@0,7..72,300..600;1,7..72,300..500&family=Anek+Devanagari:wght@300;400;500;600;700&display=swap"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #fafafa;
+            color: #16171b;
+            -webkit-font-smoothing: antialiased;
+          }
+          a {
+            color: #3538cd;
+            text-decoration: none;
+          }
+          a:hover {
+            color: #24268f;
+          }
+        </style>
+      </helmet>
+
+      <div
+        style="
+          width: 100%;
+          min-height: 100%;
+          background: #fafafa;
+          font-family: 'Literata', 'Anek Devanagari', Georgia, serif;
+          padding: 0 0 72px;
+          box-sizing: border-box;
+        "
+      >
+        <div style="max-width: 940px; margin: 0 auto; padding: 0 40px; box-sizing: border-box">
+          <header
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              gap: 24px;
+              padding: 28px 0 18px;
+              border-bottom: 3px solid #16171b;
+            "
+          >
+            <a
+              href="#"
+              style="
+                font-family: 'Anek Devanagari', 'Archivo', sans-serif;
+                font-size: 20px;
+                font-weight: 700;
+                letter-spacing: -0.01em;
+                color: #16171b;
+              "
+              >अपर्णा देशपांडे</a
+            >
+            <nav
+              style="
+                display: flex;
+                gap: 20px;
+                font-family: 'Anek Devanagari', 'Archivo', sans-serif;
+                font-size: 15px;
+                font-weight: 500;
+              "
+            >
+              <a href="#" style="color: #16171b">कविता</a>
+              <a href="#" style="color: #16171b">निबंध</a>
+              <a href="#" style="color: #16171b">नोंदी</a>
+              <a href="#" style="color: #16171b">संग्रह</a>
+            </nav>
+          </header>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 140px minmax(0, 1fr);
+              gap: 0 36px;
+              padding-top: 40px;
+            "
+          >
+            <aside style="display: flex; flex-direction: column; gap: 24px; align-self: start">
+              <div style="display: flex; flex-direction: column; gap: 7px">
+                <span
+                  style="
+                    font-family: 'Archivo', sans-serif;
+                    font-size: 11px;
+                    font-weight: 700;
+                    letter-spacing: 0.13em;
+                    text-transform: uppercase;
+                    color: #8a8d96;
+                  "
+                  >Published</span
+                >
+                <span
+                  style="
+                    font-family: 'Archivo', sans-serif;
+                    font-size: 13px;
+                    font-weight: 500;
+                    letter-spacing: 0.05em;
+                    color: #43464f;
+                  "
+                  >30 AUG 2025</span
+                >
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 7px">
+                <span
+                  style="
+                    font-family: 'Archivo', sans-serif;
+                    font-size: 11px;
+                    font-weight: 700;
+                    letter-spacing: 0.13em;
+                    text-transform: uppercase;
+                    color: #8a8d96;
+                  "
+                  >Section</span
+                >
+                <a
+                  href="#"
+                  style="
+                    font-family: 'Anek Devanagari', sans-serif;
+                    font-size: 15px;
+                    font-weight: 500;
+                  "
+                  >कविता</a
+                >
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 7px">
+                <span
+                  style="
+                    font-family: 'Archivo', sans-serif;
+                    font-size: 11px;
+                    font-weight: 700;
+                    letter-spacing: 0.13em;
+                    text-transform: uppercase;
+                    color: #8a8d96;
+                  "
+                  >Reading</span
+                >
+                <span
+                  style="
+                    font-family: 'Anek Devanagari', sans-serif;
+                    font-size: 15px;
+                    color: #43464f;
+                  "
+                  >२ मिनिटं</span
+                >
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px">
+                <span
+                  style="
+                    font-family: 'Archivo', sans-serif;
+                    font-size: 11px;
+                    font-weight: 700;
+                    letter-spacing: 0.13em;
+                    text-transform: uppercase;
+                    color: #8a8d96;
+                  "
+                  >Tags</span
+                >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    font-family: 'Anek Devanagari', sans-serif;
+                    font-size: 15px;
+                  "
+                >
+                  <a href="#">प्रेम</a>
+                  <a href="#">विरह</a>
+                </div>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 7px">
+                <span
+                  style="
+                    font-family: 'Archivo', sans-serif;
+                    font-size: 11px;
+                    font-weight: 700;
+                    letter-spacing: 0.13em;
+                    text-transform: uppercase;
+                    color: #8a8d96;
+                  "
+                  >Image</span
+                >
+                <span
+                  style="
+                    font-family: 'Literata', serif;
+                    font-size: 12.5px;
+                    font-style: italic;
+                    line-height: 1.5;
+                    color: #8a8d96;
+                  "
+                  >छायाचित्र — लेखिकेच्या संग्रहातून</span
+                >
+              </div>
+            </aside>
+
+            <article style="display: flex; flex-direction: column; gap: 30px">
+              <h1
+                style="
+                  margin: 0;
+                  font-family: 'Anek Devanagari', 'Archivo', sans-serif;
+                  font-size: 62px;
+                  font-weight: 700;
+                  line-height: 1.08;
+                  letter-spacing: -0.025em;
+                  color: #16171b;
+                  max-width: 12ch;
+                "
+              >
+                भेट
+              </h1>
+
+              <img
+                src="cover-bhet.jpg"
+                alt="Two hands almost touching in low evening light"
+                style="display: block; width: 100%; aspect-ratio: 21 / 9; object-fit: cover"
+              />
+
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  gap: 26px;
+                  font-family: 'Anek Devanagari', 'Literata', serif;
+                  font-size: 20px;
+                  line-height: 1.95;
+                  color: #2a2c33;
+                  max-width: 44ch;
+                "
+              >
+                <p style="margin: 0">
+                  विचारते आहे आज तुला प्रश्न एक थेट,<br />कधी रे होणार आपली मनासारखी भेट
+                </p>
+                <p style="margin: 0">
+                  मनी रंगविले मी आपल्या भेटीचे किस्से,<br />स्वप्नांच्या या रंगमहाली तुझाच चेहरा
+                  दिसे
+                </p>
+                <p style="margin: 0">
+                  आता भेटू तेव्हा आपण खूप फिरू बोलू नि भांडू,<br />तुझ्या नि माझ्या वेड्या जगात नवा
+                  डाव मांडू
+                </p>
+                <p style="margin: 0">
+                  तुझ्या प्रेमळ नजरेने भरून येईल माझा ऊर,<br />तुझ्या नाजूक स्पर्शाने लाजून होईन मी
+                  चूर
+                </p>
+              </div>
+
+              <div style="height: 1px; background: #e2e3e7"></div>
+
+              <section style="display: flex; flex-direction: column; gap: 18px">
+                <h3
+                  style="
+                    margin: 0;
+                    font-family: 'Archivo', sans-serif;
+                    font-size: 11px;
+                    font-weight: 700;
+                    letter-spacing: 0.13em;
+                    text-transform: uppercase;
+                    color: #8a8d96;
+                  "
+                >
+                  Next in कविता
+                </h3>
+                <div
+                  style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px"
+                >
+                  <a href="#" style="display: flex; flex-direction: column; gap: 10px">
+                    <img
+                      src="thumb-nature.jpg"
+                      alt="Monsoon light through leaves"
+                      style="display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover"
+                    />
+                    <span
+                      style="
+                        font-family: 'Anek Devanagari', 'Archivo', sans-serif;
+                        font-size: 19px;
+                        font-weight: 600;
+                        color: #16171b;
+                      "
+                      >पाऊस आणि आठवणी</span
+                    >
+                    <span
+                      style="
+                        font-family: 'Archivo', sans-serif;
+                        font-size: 12px;
+                        letter-spacing: 0.06em;
+                        color: #8a8d96;
+                      "
+                      >28 JUL 2025</span
+                    >
+                  </a>
+                  <a href="#" style="display: flex; flex-direction: column; gap: 10px">
+                    <img
+                      src="thumb-ajuni.jpg"
+                      alt="A window with the curtain drawn back"
+                      style="display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover"
+                    />
+                    <span
+                      style="
+                        font-family: 'Anek Devanagari', 'Archivo', sans-serif;
+                        font-size: 19px;
+                        font-weight: 600;
+                        color: #16171b;
+                      "
+                      >रिकामी दुपार</span
+                    >
+                    <span
+                      style="
+                        font-family: 'Archivo', sans-serif;
+                        font-size: 12px;
+                        letter-spacing: 0.06em;
+                        color: #8a8d96;
+                      "
+                      >14 JUN 2025</span
+                    >
+                  </a>
+                </div>
+              </section>
+            </article>
+          </div>
+
+          <footer
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              gap: 24px;
+              padding-top: 36px;
+              margin-top: 36px;
+              border-top: 1px solid #e2e3e7;
+            "
+          >
+            <div
+              style="
+                display: flex;
+                gap: 22px;
+                font-family: 'Archivo', sans-serif;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+              "
+            >
+              <a href="#">RSS</a>
+              <a href="#">Archive</a>
+              <a href="#">Search</a>
+            </div>
+            <p
+              style="
+                margin: 0;
+                font-family: 'Archivo', sans-serif;
+                font-size: 12px;
+                letter-spacing: 0.07em;
+                color: #9da0a8;
+              "
+            >
+              BUILT WITH AKSHAR
+            </p>
+          </footer>
+        </div>
+      </div>
+    </x-dc>
+  </body>
+</html>

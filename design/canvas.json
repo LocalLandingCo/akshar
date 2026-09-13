@@ -1,0 +1,51 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html",          "title": "A · Kagad — Home (original)",  "x": 0,    "y": 0,   "w": 1100, "h": 2100 },
+    { "file": "KagadLeftHome.dc.html", "title": "B · Kagad Left — Home",        "x": 1220, "y": 0,   "w": 1100, "h": 1760 },
+    { "file": "KagadDeepHome.dc.html", "title": "C · Kagad Deep — Home",        "x": 2440, "y": 0,   "w": 1100, "h": 2140 },
+    { "file": "KagadBloomHome.dc.html","title": "D · Kagad Bloom — Home",       "x": 3660, "y": 0,   "w": 1100, "h": 2260 },
+
+    { "file": "KagadPost.dc.html",     "title": "A · Kagad — Post",             "x": 0,    "y": 2300, "w": 1100, "h": 1640 },
+    { "file": "KagadLeftPost.dc.html", "title": "B · Kagad Left — Post",        "x": 1220, "y": 2300, "w": 1100, "h": 1480 },
+    { "file": "KagadDeepPost.dc.html", "title": "C · Kagad Deep — Post",        "x": 2440, "y": 2300, "w": 1100, "h": 1740 },
+    { "file": "KagadBloomPost.dc.html","title": "D · Kagad Bloom — Post",       "x": 3660, "y": 2300, "w": 1100, "h": 1720 }
+  ],
+  "annotations": [
+    {
+      "id": "brief",
+      "x": 0,
+      "y": -420,
+      "w": 1100,
+      "text": "AKSHAR — variations on Kagad (कागद, paper), now with spice\n\nEach variant got restrained, DIFFERENT garnish rather than the same decoration copy-pasted four times — the spice matches each one's own character instead of flattening them together:\n\n• Devanagari edition numerals (०१, ०२...) on every entry — treats the archive as a numbered literary collection\n• A pull-quote on every post — one striking line from the poem set larger, breaking the vertical rhythm\n• A small hand-drawn pen-stroke flourish (abstract, not a dingbat) at major structural breaks — A and its footer only, to keep it rare\n\nA (ceremonial) got the fullest treatment: flourish dividers + numerals + pull-quote. B (left rail) deliberately did NOT get a flourish — that would undercut its whole point — so its spice is category-colour-coded rules (terracotta/olive/rose) instead. C (deep ink) layered its pull-quote onto the drop cap and dot-rule it already had. D (bloom) kept its bud icons and got a soft, unitalicised pull-quote in dusty rose."
+    },
+    {
+      "id": "note-a",
+      "x": 0,
+      "y": -180,
+      "w": 520,
+      "text": "A · ORIGINAL\nCentred, cream ground, quiet terracotta accent. The reference point — everything else is a deliberate departure from this."
+    },
+    {
+      "id": "note-b",
+      "x": 1220,
+      "y": -180,
+      "w": 520,
+      "text": "B · LEFT RAIL\nSame palette and type, but left-aligned in a single reading column with a thin vertical rule marking each entry — reads more like a conventional essay/blog page, less like a spotlight.\n\nTRADEOFF: loses some of the original's ceremony; gains familiarity and a denser, more scannable list."
+    },
+    {
+      "id": "note-c",
+      "x": 2440,
+      "y": -180,
+      "w": 520,
+      "text": "C · DEEP INK\nRicher, more saturated warm tones (antique-paper gold, walnut ink), a framed-photograph treatment for images, a drop cap on the post's opening line, and small dot-rule dividers.\n\nTRADEOFF: more ornamented and confident; slightly heavier-feeling than A, best suited to essay-length work."
+    },
+    {
+      "id": "note-d",
+      "x": 3660,
+      "y": -180,
+      "w": 520,
+      "text": "D · BLOOM\nSofter, airier — blush-rose ground, italic serif headings, rounded image corners, a small line-drawn bud mark at top and bottom.\n\nTRADEOFF: the most delicate and specifically poetry-leaning; would read as too soft for essay-heavy or nonfiction writers."
+    }
+  ],
+  "launch": { "view": "canvas" }
+}

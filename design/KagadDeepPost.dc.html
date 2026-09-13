@@ -1,0 +1,289 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #f3e9d8;
+            color: #2e2013;
+            -webkit-font-smoothing: antialiased;
+          }
+          a {
+            color: #8c3e23;
+            text-decoration: none;
+          }
+          a:hover {
+            color: #611f0f;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+          }
+        </style>
+      </helmet>
+
+      <div
+        style="
+          width: 100%;
+          min-height: 100%;
+          background: #f3e9d8;
+          font-family: 'Newsreader', 'Tiro Devanagari Marathi', Georgia, serif;
+          padding: 48px 0 64px;
+          box-sizing: border-box;
+        "
+      >
+        <div
+          style="
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+          "
+        >
+          <nav
+            style="
+              display: flex;
+              justify-content: center;
+              gap: 20px;
+              font-size: 14px;
+              color: #8a6b45;
+            "
+          >
+            <a href="#" style="color: #6b4a2b">अपर्णा देशपांडे</a>
+            <span>·</span>
+            <a href="#" style="color: #6b4a2b">कविता</a>
+          </nav>
+
+          <div style="display: flex; align-items: center; gap: 8px">
+            <div style="flex-grow: 1; height: 1px; background: #c9ac7c"></div>
+            <span style="width: 5px; height: 5px; border-radius: 50%; background: #8c3e23"></span>
+            <div style="flex-grow: 1; height: 1px; background: #c9ac7c"></div>
+          </div>
+
+          <header
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 14px;
+              text-align: center;
+            "
+          >
+            <h1
+              style="
+                margin: 0;
+                font-family: 'Tiro Devanagari Marathi', 'Newsreader', serif;
+                font-size: 50px;
+                font-weight: 400;
+                line-height: 1.2;
+                color: #2e2013;
+              "
+            >
+              भेट
+            </h1>
+            <div style="display: flex; align-items: baseline; gap: 10px; color: #8a6b45">
+              <span style="font-size: 13px">कविता</span>
+              <span style="font-size: 11px">·</span>
+              <span style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase"
+                >30 Aug 2025</span
+              >
+              <span style="font-size: 11px">·</span>
+              <span style="font-size: 13px">२ मिनिटं</span>
+            </div>
+          </header>
+
+          <figure
+            style="margin: 0; display: flex; flex-direction: column; align-items: center; gap: 9px"
+          >
+            <img
+              src="cover-bhet.jpg"
+              alt="Two hands almost touching in low evening light"
+              style="
+                display: block;
+                width: 440px;
+                max-width: 100%;
+                aspect-ratio: 3 / 2;
+                object-fit: cover;
+                border: 7px solid #f3e9d8;
+                outline: 1px solid #c9ac7c;
+              "
+            />
+            <figcaption style="font-size: 12.5px; font-style: italic; color: #8a6b45">
+              छायाचित्र — लेखिकेच्या संग्रहातून
+            </figcaption>
+          </figure>
+
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 4px;
+              font-family: 'Tiro Devanagari Marathi', 'Newsreader', serif;
+              font-size: 21px;
+              line-height: 2.05;
+              color: #3d2c18;
+            "
+          >
+            <p style="margin: 0">
+              <span
+                style="
+                  float: left;
+                  font-family: 'Newsreader', serif;
+                  font-size: 74px;
+                  line-height: 0.78;
+                  font-weight: 500;
+                  color: #8c3e23;
+                  padding: 6px 10px 0 0;
+                "
+                >वि</span
+              >चारते आहे आज तुला प्रश्न एक थेट,<br />कधी रे होणार आपली मनासारखी भेट
+            </p>
+            <p style="margin: 32px 0 0; clear: both">
+              मनी रंगविले मी आपल्या भेटीचे किस्से,<br />स्वप्नांच्या या रंगमहाली तुझाच चेहरा दिसे
+            </p>
+            <div style="display: flex; align-items: center; gap: 16px; margin: 12px 0">
+              <span style="width: 30px; height: 1px; background: #c9ac7c"></span>
+              <p
+                style="
+                  margin: 0;
+                  font-size: 26px;
+                  font-style: italic;
+                  font-weight: 500;
+                  color: #8c3e23;
+                  line-height: 1.55;
+                "
+              >
+                तुझ्या नि माझ्या वेड्या जगात<br />नवा डाव मांडू
+              </p>
+              <span style="width: 30px; height: 1px; background: #c9ac7c"></span>
+            </div>
+            <p style="margin: 0">
+              आता भेटू तेव्हा आपण खूप फिरू बोलू नि भांडू,<br />तुझ्या नि माझ्या वेड्या जगात नवा डाव
+              मांडू
+            </p>
+            <p style="margin: 30px 0 0">
+              तुझ्या प्रेमळ नजरेने भरून येईल माझा ऊर,<br />तुझ्या नाजूक स्पर्शाने लाजून होईन मी चूर
+            </p>
+          </div>
+
+          <div style="display: flex; justify-content: center; gap: 10px; margin-top: 4px">
+            <a
+              href="#"
+              style="
+                font-size: 13px;
+                color: #8c3e23;
+                border: 1px solid #c9ac7c;
+                border-radius: 999px;
+                padding: 5px 14px;
+              "
+              >प्रेम</a
+            >
+            <a
+              href="#"
+              style="
+                font-size: 13px;
+                color: #8c3e23;
+                border: 1px solid #c9ac7c;
+                border-radius: 999px;
+                padding: 5px 14px;
+              "
+              >विरह</a
+            >
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px">
+            <div style="flex-grow: 1; height: 1px; background: #c9ac7c"></div>
+            <span style="width: 5px; height: 5px; border-radius: 50%; background: #8c3e23"></span>
+            <div style="flex-grow: 1; height: 1px; background: #c9ac7c"></div>
+          </div>
+
+          <section style="display: flex; flex-direction: column; gap: 20px">
+            <h3
+              style="
+                margin: 0;
+                font-size: 12px;
+                letter-spacing: 0.16em;
+                text-transform: uppercase;
+                color: #8a6b45;
+                font-weight: 500;
+                text-align: center;
+              "
+            >
+              More from this journal
+            </h3>
+            <div style="display: flex; flex-direction: column; gap: 16px">
+              <a
+                href="#"
+                style="
+                  display: flex;
+                  align-items: baseline;
+                  justify-content: center;
+                  gap: 14px;
+                  color: #2e2013;
+                "
+              >
+                <span
+                  style="font-size: 12px; letter-spacing: 0.08em; color: #a0885f; min-width: 78px"
+                  >28 Jul 2025</span
+                >
+                <span
+                  style="
+                    font-family: 'Tiro Devanagari Marathi', 'Newsreader', serif;
+                    font-size: 18px;
+                  "
+                  >पाऊस आणि आठवणी</span
+                >
+              </a>
+              <a
+                href="#"
+                style="
+                  display: flex;
+                  align-items: baseline;
+                  justify-content: center;
+                  gap: 14px;
+                  color: #2e2013;
+                "
+              >
+                <span
+                  style="font-size: 12px; letter-spacing: 0.08em; color: #a0885f; min-width: 78px"
+                  >03 Jul 2025</span
+                >
+                <span style="font-size: 18px">Keeping a commonplace book</span>
+              </a>
+            </div>
+          </section>
+
+          <footer
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 12px;
+              text-align: center;
+              color: #8a6b45;
+              margin-top: 6px;
+            "
+          >
+            <div style="display: flex; gap: 20px; font-size: 14px">
+              <a href="#" style="color: #8c3e23">RSS</a>
+              <a href="#" style="color: #8c3e23">संग्रह</a>
+            </div>
+            <p style="margin: 0; font-size: 12.5px; font-style: italic">
+              Built with Akshar · अक्षर
+            </p>
+          </footer>
+        </div>
+      </div>
+    </x-dc>
+  </body>
+</html>

@@ -1,0 +1,574 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Sans+Devanagari:wght@300;400;500;600&display=swap"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #fcfcfc;
+            color: #232323;
+            -webkit-font-smoothing: antialiased;
+          }
+          a {
+            color: #2c5fd1;
+            text-decoration: none;
+          }
+          a:hover {
+            color: #1b3f92;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+          }
+        </style>
+      </helmet>
+
+      <div
+        style="
+          width: 100%;
+          min-height: 100%;
+          background: #fcfcfc;
+          font-family: 'IBM Plex Serif', 'IBM Plex Sans Devanagari', Georgia, serif;
+          padding: 56px 0 64px;
+          box-sizing: border-box;
+        "
+      >
+        <div
+          style="
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 40px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 44px;
+          "
+        >
+          <header style="display: flex; flex-direction: column; gap: 18px">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                gap: 24px;
+              "
+            >
+              <h1
+                style="
+                  margin: 0;
+                  font-family: 'IBM Plex Sans Devanagari', 'IBM Plex Mono', sans-serif;
+                  font-size: 19px;
+                  font-weight: 600;
+                  letter-spacing: -0.01em;
+                  color: #232323;
+                "
+              >
+                अपर्णा देशपांडे
+              </h1>
+              <nav
+                style="
+                  display: flex;
+                  gap: 16px;
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 12px;
+                  letter-spacing: 0.02em;
+                "
+              >
+                <a href="#" style="color: #6a6a6a">archive</a>
+                <a href="#" style="color: #6a6a6a">search</a>
+                <a href="#" style="color: #6a6a6a">rss</a>
+                <a href="#" style="color: #6a6a6a">about</a>
+              </nav>
+            </div>
+            <p
+              style="
+                margin: 0;
+                font-family: 'IBM Plex Mono', monospace;
+                font-size: 12.5px;
+                line-height: 1.7;
+                color: #8a8a8a;
+                max-width: 56ch;
+              "
+            >
+              कविता, निबंध आणि नोंदी. 38 pieces since 2019. Everything here is plain text and stays
+              that way.
+            </p>
+          </header>
+
+          <div style="height: 1px; background: #e8e8e8"></div>
+
+          <section style="display: flex; flex-direction: column; gap: 0">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 18px;
+                padding: 10px 0;
+                border-bottom: 1px solid #f0f0f0;
+              "
+            >
+              <span
+                style="
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 12px;
+                  color: #9a9a9a;
+                  min-width: 82px;
+                  flex-shrink: 0;
+                "
+                >2025-08-30</span
+              >
+              <img
+                src="cover-bhet.jpg"
+                alt="Two hands almost touching in low evening light"
+                style="display: block; width: 44px; height: 44px; object-fit: cover; flex-shrink: 0"
+              />
+              <a
+                href="#"
+                style="
+                  font-family: 'IBM Plex Sans Devanagari', 'IBM Plex Serif', serif;
+                  font-size: 18px;
+                  color: #232323;
+                  flex-grow: 1;
+                "
+                >भेट</a
+              >
+              <span
+                style="
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 11px;
+                  color: #b0b0b0;
+                  flex-shrink: 0;
+                "
+                >कविता</span
+              >
+            </div>
+
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 18px;
+                padding: 10px 0;
+                border-bottom: 1px solid #f0f0f0;
+              "
+            >
+              <span
+                style="
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 12px;
+                  color: #9a9a9a;
+                  min-width: 82px;
+                  flex-shrink: 0;
+                "
+                >2025-08-12</span
+              >
+              <img
+                src="thumb-exam.jpg"
+                alt="An old school exam paper"
+                style="display: block; width: 44px; height: 44px; object-fit: cover; flex-shrink: 0"
+              />
+              <a href="#" style="font-size: 18px; color: #232323; flex-grow: 1"
+                >A year of writing badly on purpose</a
+              >
+              <span
+                style="
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 11px;
+                  color: #b0b0b0;
+                  flex-shrink: 0;
+                "
+                >निबंध</span
+              >
+            </div>
+
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 18px;
+                padding: 10px 0;
+                border-bottom: 1px solid #f0f0f0;
+              "
+            >
+              <span
+                style="
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 12px;
+                  color: #9a9a9a;
+                  min-width: 82px;
+                  flex-shrink: 0;
+                "
+                >2025-07-28</span
+              >
+              <img
+                src="thumb-nature.jpg"
+                alt="Monsoon light through leaves"
+                style="display: block; width: 44px; height: 44px; object-fit: cover; flex-shrink: 0"
+              />
+              <a
+                href="#"
+                style="
+                  font-family: 'IBM Plex Sans Devanagari', 'IBM Plex Serif', serif;
+                  font-size: 18px;
+                  color: #232323;
+                  flex-grow: 1;
+                "
+                >पाऊस आणि आठवणी</a
+              >
+              <span
+                style="
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 11px;
+                  color: #b0b0b0;
+                  flex-shrink: 0;
+                "
+                >कविता</span
+              >
+            </div>
+
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 18px;
+                padding: 10px 0;
+                border-bottom: 1px solid #f0f0f0;
+              "
+            >
+              <span
+                style="
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 12px;
+                  color: #9a9a9a;
+                  min-width: 82px;
+                  flex-shrink: 0;
+                "
+                >2025-07-03</span
+              >
+              <div
+                style="
+                  width: 44px;
+                  height: 44px;
+                  flex-shrink: 0;
+                  border: 1px solid #f0f0f0;
+                  box-sizing: border-box;
+                "
+              ></div>
+              <a href="#" style="font-size: 18px; color: #232323; flex-grow: 1"
+                >Keeping a commonplace book</a
+              >
+              <span
+                style="
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 11px;
+                  color: #b0b0b0;
+                  flex-shrink: 0;
+                "
+                >नोंदी</span
+              >
+            </div>
+
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 18px;
+                padding: 10px 0;
+                border-bottom: 1px solid #f0f0f0;
+              "
+            >
+              <span
+                style="
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 12px;
+                  color: #9a9a9a;
+                  min-width: 82px;
+                  flex-shrink: 0;
+                "
+                >2025-06-14</span
+              >
+              <img
+                src="thumb-ajuni.jpg"
+                alt="A window with the curtain drawn back"
+                style="display: block; width: 44px; height: 44px; object-fit: cover; flex-shrink: 0"
+              />
+              <a
+                href="#"
+                style="
+                  font-family: 'IBM Plex Sans Devanagari', 'IBM Plex Serif', serif;
+                  font-size: 18px;
+                  color: #232323;
+                  flex-grow: 1;
+                "
+                >रिकामी दुपार</a
+              >
+              <span
+                style="
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 11px;
+                  color: #b0b0b0;
+                  flex-shrink: 0;
+                "
+                >कविता</span
+              >
+            </div>
+
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 18px;
+                padding: 10px 0;
+                border-bottom: 1px solid #f0f0f0;
+              "
+            >
+              <span
+                style="
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 12px;
+                  color: #9a9a9a;
+                  min-width: 82px;
+                  flex-shrink: 0;
+                "
+                >2025-05-22</span
+              >
+              <div
+                style="
+                  width: 44px;
+                  height: 44px;
+                  flex-shrink: 0;
+                  border: 1px solid #f0f0f0;
+                  box-sizing: border-box;
+                "
+              ></div>
+              <a href="#" style="font-size: 18px; color: #232323; flex-grow: 1"
+                >Three ways to end an essay</a
+              >
+              <span
+                style="
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 11px;
+                  color: #b0b0b0;
+                  flex-shrink: 0;
+                "
+                >निबंध</span
+              >
+            </div>
+
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 18px;
+                padding: 10px 0;
+                border-bottom: 1px solid #f0f0f0;
+              "
+            >
+              <span
+                style="
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 12px;
+                  color: #9a9a9a;
+                  min-width: 82px;
+                  flex-shrink: 0;
+                "
+                >2025-05-04</span
+              >
+              <img
+                src="thumb-wedding.jpg"
+                alt="Marigold garlands at a wedding"
+                style="display: block; width: 44px; height: 44px; object-fit: cover; flex-shrink: 0"
+              />
+              <a
+                href="#"
+                style="
+                  font-family: 'IBM Plex Sans Devanagari', 'IBM Plex Serif', serif;
+                  font-size: 18px;
+                  color: #232323;
+                  flex-grow: 1;
+                "
+                >उन्हाळी सुट्टी</a
+              >
+              <span
+                style="
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 11px;
+                  color: #b0b0b0;
+                  flex-shrink: 0;
+                "
+                >कविता</span
+              >
+            </div>
+
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 18px;
+                padding: 10px 0;
+                border-bottom: 1px solid #f0f0f0;
+              "
+            >
+              <span
+                style="
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 12px;
+                  color: #9a9a9a;
+                  min-width: 82px;
+                  flex-shrink: 0;
+                "
+                >2025-04-18</span
+              >
+              <div
+                style="
+                  width: 44px;
+                  height: 44px;
+                  flex-shrink: 0;
+                  border: 1px solid #f0f0f0;
+                  box-sizing: border-box;
+                "
+              ></div>
+              <a href="#" style="font-size: 18px; color: #232323; flex-grow: 1"
+                >Notes on translating my own poems</a
+              >
+              <span
+                style="
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 11px;
+                  color: #b0b0b0;
+                  flex-shrink: 0;
+                "
+                >नोंदी</span
+              >
+            </div>
+
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 18px;
+                padding: 10px 0;
+                border-bottom: 1px solid #f0f0f0;
+              "
+            >
+              <span
+                style="
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 12px;
+                  color: #9a9a9a;
+                  min-width: 82px;
+                  flex-shrink: 0;
+                "
+                >2025-03-29</span
+              >
+              <img
+                src="thumb-tu.jpg"
+                alt="A doorway in afternoon shadow"
+                style="display: block; width: 44px; height: 44px; object-fit: cover; flex-shrink: 0"
+              />
+              <a
+                href="#"
+                style="
+                  font-family: 'IBM Plex Sans Devanagari', 'IBM Plex Serif', serif;
+                  font-size: 18px;
+                  color: #232323;
+                  flex-grow: 1;
+                "
+                >खिडकी</a
+              >
+              <span
+                style="
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 11px;
+                  color: #b0b0b0;
+                  flex-shrink: 0;
+                "
+                >कविता</span
+              >
+            </div>
+
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 18px;
+                padding: 10px 0;
+                border-bottom: 1px solid #f0f0f0;
+              "
+            >
+              <span
+                style="
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 12px;
+                  color: #9a9a9a;
+                  min-width: 82px;
+                  flex-shrink: 0;
+                "
+                >2025-03-07</span
+              >
+              <div
+                style="
+                  width: 44px;
+                  height: 44px;
+                  flex-shrink: 0;
+                  border: 1px solid #f0f0f0;
+                  box-sizing: border-box;
+                "
+              ></div>
+              <a href="#" style="font-size: 18px; color: #232323; flex-grow: 1"
+                >Why I stopped using a writing app</a
+              >
+              <span
+                style="
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-size: 11px;
+                  color: #b0b0b0;
+                  flex-shrink: 0;
+                "
+                >निबंध</span
+              >
+            </div>
+          </section>
+
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: baseline;
+              gap: 24px;
+              font-family: 'IBM Plex Mono', monospace;
+              font-size: 12px;
+            "
+          >
+            <a href="#" style="color: #2c5fd1">older →</a>
+            <span style="color: #b0b0b0">10 of 38</span>
+          </div>
+
+          <div style="height: 1px; background: #e8e8e8"></div>
+
+          <footer
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: baseline;
+              gap: 24px;
+              font-family: 'IBM Plex Mono', monospace;
+              font-size: 11.5px;
+              color: #9a9a9a;
+            "
+          >
+            <span>© 2025 अपर्णा देशपांडे</span>
+            <span>built with akshar</span>
+          </footer>
+        </div>
+      </div>
+    </x-dc>
+  </body>
+</html>

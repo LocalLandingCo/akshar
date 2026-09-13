@@ -1,0 +1,383 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #fbf6ee;
+            color: #38322b;
+            -webkit-font-smoothing: antialiased;
+          }
+          a {
+            color: #9b5642;
+            text-decoration: none;
+          }
+          a:hover {
+            color: #6e3a2b;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+          }
+        </style>
+      </helmet>
+
+      <div
+        style="
+          width: 100%;
+          min-height: 100%;
+          background: #fbf6ee;
+          font-family: 'Newsreader', 'Tiro Devanagari Marathi', Georgia, serif;
+          padding: 76px 0 64px;
+          box-sizing: border-box;
+        "
+      >
+        <div
+          style="
+            max-width: 660px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 52px;
+          "
+        >
+          <header
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 14px;
+              text-align: center;
+            "
+          >
+            <h1
+              style="
+                margin: 0;
+                font-family: 'Tiro Devanagari Marathi', 'Newsreader', serif;
+                font-size: 46px;
+                font-weight: 400;
+                line-height: 1.2;
+                color: #38322b;
+              "
+            >
+              अपर्णा देशपांडे
+            </h1>
+            <p
+              style="
+                margin: 0;
+                font-size: 17px;
+                font-style: italic;
+                color: #7a6e5f;
+                line-height: 1.6;
+              "
+            >
+              कविता, निबंध आणि अधूनमधूनच्या नोंदी
+            </p>
+            <nav
+              style="
+                display: flex;
+                gap: 22px;
+                align-items: center;
+                margin-top: 12px;
+                font-size: 16px;
+              "
+            >
+              <a href="#" style="color: #38322b">कविता</a>
+              <a href="#" style="color: #38322b">निबंध</a>
+              <a href="#" style="color: #38322b">नोंदी</a>
+              <a href="#" style="color: #38322b">संग्रह</a>
+              <a href="#" style="color: #38322b">About</a>
+            </nav>
+          </header>
+
+          <div style="display: flex; align-items: center; gap: 14px">
+            <div style="flex-grow: 1; height: 1px; background: #e7ded1"></div>
+            <svg
+              width="34"
+              height="13"
+              viewBox="0 0 34 13"
+              fill="none"
+              style="color: #b08a56; opacity: 0.75"
+            >
+              <path
+                d="M1 7C6 2 11 2 17 7C23 12 28 12 33 7"
+                stroke="currentColor"
+                stroke-width="1.2"
+                stroke-linecap="round"
+              />
+            </svg>
+            <div style="flex-grow: 1; height: 1px; background: #e7ded1"></div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 46px">
+            <article
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+                text-align: center;
+              "
+            >
+              <img
+                src="thumb-poetry.jpg"
+                alt="Devanagari calligraphy on textured paper"
+                style="
+                  display: block;
+                  width: 400px;
+                  max-width: 100%;
+                  aspect-ratio: 4 / 3;
+                  object-fit: cover;
+                  border-radius: 2px;
+                "
+              />
+              <div style="display: flex; flex-direction: column; gap: 10px; align-items: center">
+                <div style="display: flex; align-items: baseline; gap: 9px; color: #9a8c79">
+                  <span style="font-size: 12px; color: #b08a56">०१</span>
+                  <span style="font-size: 14px">कविता</span>
+                  <span style="font-size: 12px">·</span>
+                  <span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase"
+                    >30 Aug 2025</span
+                  >
+                </div>
+                <h2
+                  style="
+                    margin: 0;
+                    font-family: 'Tiro Devanagari Marathi', 'Newsreader', serif;
+                    font-size: 31px;
+                    font-weight: 400;
+                    line-height: 1.3;
+                  "
+                >
+                  <a href="#" style="color: #38322b">भेट</a>
+                </h2>
+                <p
+                  style="
+                    margin: 0;
+                    font-size: 17px;
+                    line-height: 1.75;
+                    color: #6b6154;
+                    max-width: 46ch;
+                    text-wrap: pretty;
+                  "
+                >
+                  विचारते आहे आज तुला प्रश्न एक थेट, कधी रे होणार आपली मनासारखी भेट
+                </p>
+              </div>
+            </article>
+
+            <div style="height: 1px; background: #efe8dc"></div>
+
+            <article
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                text-align: center;
+              "
+            >
+              <div style="display: flex; align-items: baseline; gap: 9px; color: #9a8c79">
+                <span style="font-size: 12px; color: #b08a56">०२</span>
+                <span style="font-size: 14px">निबंध</span>
+                <span style="font-size: 12px">·</span>
+                <span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase"
+                  >12 Aug 2025</span
+                >
+              </div>
+              <h2 style="margin: 0; font-size: 31px; font-weight: 400; line-height: 1.3">
+                <a href="#" style="color: #38322b">A year of writing badly on purpose</a>
+              </h2>
+              <p
+                style="
+                  margin: 0;
+                  font-size: 17px;
+                  line-height: 1.75;
+                  color: #6b6154;
+                  max-width: 48ch;
+                  text-wrap: pretty;
+                "
+              >
+                I kept every draft I hated. Twelve months later they are the only honest record I
+                have of how I actually think.
+              </p>
+            </article>
+
+            <div style="height: 1px; background: #efe8dc"></div>
+
+            <article
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+                text-align: center;
+              "
+            >
+              <img
+                src="thumb-nature.jpg"
+                alt="Monsoon light through leaves"
+                style="
+                  display: block;
+                  width: 400px;
+                  max-width: 100%;
+                  aspect-ratio: 4 / 3;
+                  object-fit: cover;
+                  border-radius: 2px;
+                "
+              />
+              <div style="display: flex; flex-direction: column; gap: 10px; align-items: center">
+                <div style="display: flex; align-items: baseline; gap: 9px; color: #9a8c79">
+                  <span style="font-size: 12px; color: #b08a56">०३</span>
+                  <span style="font-size: 14px">कविता</span>
+                  <span style="font-size: 12px">·</span>
+                  <span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase"
+                    >28 Jul 2025</span
+                  >
+                </div>
+                <h2
+                  style="
+                    margin: 0;
+                    font-family: 'Tiro Devanagari Marathi', 'Newsreader', serif;
+                    font-size: 31px;
+                    font-weight: 400;
+                    line-height: 1.3;
+                  "
+                >
+                  <a href="#" style="color: #38322b">पाऊस आणि आठवणी</a>
+                </h2>
+                <p
+                  style="
+                    margin: 0;
+                    font-size: 17px;
+                    line-height: 1.75;
+                    color: #6b6154;
+                    max-width: 46ch;
+                    text-wrap: pretty;
+                  "
+                >
+                  पहिल्या सरीचा वास आला की स्वयंपाकघरातली आजी आठवते.
+                </p>
+              </div>
+            </article>
+
+            <div style="height: 1px; background: #efe8dc"></div>
+
+            <article
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                text-align: center;
+              "
+            >
+              <div style="display: flex; align-items: baseline; gap: 9px; color: #9a8c79">
+                <span style="font-size: 12px; color: #b08a56">०४</span>
+                <span style="font-size: 14px">नोंदी</span>
+                <span style="font-size: 12px">·</span>
+                <span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase"
+                  >03 Jul 2025</span
+                >
+              </div>
+              <h2 style="margin: 0; font-size: 31px; font-weight: 400; line-height: 1.3">
+                <a href="#" style="color: #38322b">Keeping a commonplace book</a>
+              </h2>
+              <p
+                style="
+                  margin: 0;
+                  font-size: 17px;
+                  line-height: 1.75;
+                  color: #6b6154;
+                  max-width: 48ch;
+                  text-wrap: pretty;
+                "
+              >
+                A notebook that is not a diary and not a draft — only a place to keep other people's
+                sentences until they become useful.
+              </p>
+            </article>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 14px">
+            <div style="flex-grow: 1; height: 1px; background: #e7ded1"></div>
+            <svg
+              width="34"
+              height="13"
+              viewBox="0 0 34 13"
+              fill="none"
+              style="color: #b08a56; opacity: 0.75"
+            >
+              <path
+                d="M1 7C6 2 11 2 17 7C23 12 28 12 33 7"
+                stroke="currentColor"
+                stroke-width="1.2"
+                stroke-linecap="round"
+              />
+            </svg>
+            <div style="flex-grow: 1; height: 1px; background: #e7ded1"></div>
+          </div>
+
+          <footer
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 14px;
+              text-align: center;
+              color: #9a8c79;
+            "
+          >
+            <div style="display: flex; gap: 20px; font-size: 15px">
+              <a href="#" style="color: #9b5642">RSS</a>
+              <a href="#" style="color: #9b5642">संग्रह</a>
+              <a href="#" style="color: #9b5642">शोधा</a>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px">
+              <svg
+                width="24"
+                height="9"
+                viewBox="0 0 34 13"
+                fill="none"
+                style="color: #c9a876; opacity: 0.85"
+              >
+                <path
+                  d="M1 7C6 2 11 2 17 7C23 12 28 12 33 7"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <p style="margin: 0; font-size: 13px; font-style: italic">
+                Built with Akshar · अक्षर
+              </p>
+              <svg
+                width="24"
+                height="9"
+                viewBox="0 0 34 13"
+                fill="none"
+                style="color: #c9a876; opacity: 0.85; transform: scaleX(-1)"
+              >
+                <path
+                  d="M1 7C6 2 11 2 17 7C23 12 28 12 33 7"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </x-dc>
+  </body>
+</html>

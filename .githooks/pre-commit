@@ -1,0 +1,20 @@
+#!/bin/sh
+# Format + lint staged files. Deliberately minimal (tech-stack.md §3) — no
+# lint-staged dependency, just the two tools the project already has.
+set -e
+
+files=$(git diff --cached --name-only --diff-filter=ACMR -- '*.js' '*.mjs' '*.cjs' '*.ts' '*.tsx' '*.astro' '*.json' '*.md' '*.yml' '*.yaml' '*.css' || true)
+
+if [ -n "$files" ]; then
+  echo "$files" | xargs npx prettier --write --ignore-unknown
+  echo "$files" | xargs git add
+fi
+
+js_files=$(echo "$files" | grep -E '\.(js|mjs|cjs|ts|tsx|astro)$' || true)
+
+if [ -n "$js_files" ]; then
+  echo "$js_files" | xargs npx eslint --fix
+  echo "$js_files" | xargs git add
+fi
+
+exit 0
