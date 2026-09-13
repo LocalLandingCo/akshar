@@ -1,20 +1,31 @@
 #!/bin/sh
 # Format + lint staged files. Deliberately minimal (tech-stack.md §3) — no
 # lint-staged dependency, just the two tools the project already has.
+#
+# NUL-separated throughout (git diff -z, xargs -0): staged filenames can be
+# non-ASCII (a writer's own script — spec.md is explicit about this, see
+# content/posts/poems/पाऊस.md) or contain spaces, and both break under plain
+# newline-splitting regardless of core.quotepath.
 set -e
 
-files=$(git diff --cached --name-only --diff-filter=ACMR -- '*.js' '*.mjs' '*.cjs' '*.ts' '*.tsx' '*.astro' '*.json' '*.md' '*.yml' '*.yaml' '*.css' || true)
+has_files() {
+  git diff --cached --name-only -z --diff-filter=ACMR -- "$@" | head -c1 | grep -q .
+}
 
-if [ -n "$files" ]; then
-  echo "$files" | xargs npx prettier --write --ignore-unknown
-  echo "$files" | xargs git add
+if has_files '*.js' '*.mjs' '*.cjs' '*.ts' '*.tsx' '*.astro' '*.json' '*.md' '*.yml' '*.yaml' '*.css'; then
+  git diff --cached --name-only -z --diff-filter=ACMR -- '*.js' '*.mjs' '*.cjs' '*.ts' '*.tsx' \
+    '*.astro' '*.json' '*.md' '*.yml' '*.yaml' '*.css' \
+    | xargs -0 npx prettier --write --ignore-unknown
+  git diff --cached --name-only -z --diff-filter=ACMR -- '*.js' '*.mjs' '*.cjs' '*.ts' '*.tsx' \
+    '*.astro' '*.json' '*.md' '*.yml' '*.yaml' '*.css' \
+    | xargs -0 git add
 fi
 
-js_files=$(echo "$files" | grep -E '\.(js|mjs|cjs|ts|tsx|astro)$' || true)
-
-if [ -n "$js_files" ]; then
-  echo "$js_files" | xargs npx eslint --fix
-  echo "$js_files" | xargs git add
+if has_files '*.js' '*.mjs' '*.cjs' '*.ts' '*.tsx' '*.astro'; then
+  git diff --cached --name-only -z --diff-filter=ACMR -- '*.js' '*.mjs' '*.cjs' '*.ts' '*.tsx' '*.astro' \
+    | xargs -0 npx eslint --fix
+  git diff --cached --name-only -z --diff-filter=ACMR -- '*.js' '*.mjs' '*.cjs' '*.ts' '*.tsx' '*.astro' \
+    | xargs -0 git add
 fi
 
 exit 0
