@@ -6,9 +6,11 @@ interface Props {
   site: SiteMeta;
   strings: UIStrings;
   post: PostFull;
+  image?: { url: string; alt: string };
+  jsonLd?: Record<string, unknown>[];
 }
 
-const { site, strings, post } = Astro.props;
+const { site, strings, post, image, jsonLd } = Astro.props;
 // The contract types `Content` as `unknown` to keep the public contract
 // decoupled from Astro's internal component-factory type; narrowed here,
 // at the one place it's actually rendered.
@@ -24,6 +26,9 @@ const formattedDate = new Intl.DateTimeFormat(site.language, { dateStyle: 'long'
   title={post.title}
   description={post.description}
   canonicalUrl={post.canonicalUrl}
+  type="article"
+  image={image}
+  jsonLd={jsonLd}
 >
   <article>
     <header class="post-header">

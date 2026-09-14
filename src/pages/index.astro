@@ -1,8 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
+import siteConfig from '../../site.config';
 import { isVisible, sortByDateDesc, toPostSummary } from '../lib/content/posts';
+import { personJsonLd, websiteJsonLd } from '../lib/seo/json-ld';
+import { siteShareImage } from '../lib/seo/image';
 import { buildSiteMeta } from '../lib/theme/site-meta';
-import { homeHref } from '../lib/urls';
+import { absoluteUrl, homeHref } from '../lib/urls';
 import Home from '../themes/default/layouts/Home.astro';
 import strings from '../themes/default/strings';
 
@@ -11,6 +14,15 @@ const allPages = await getCollection('pages');
 
 const posts = sortByDateDesc(allPosts.filter(isVisible)).map(toPostSummary);
 const site = buildSiteMeta(allPages, strings, homeHref());
+const image = siteShareImage();
+const jsonLd = [websiteJsonLd(site, siteConfig.url), personJsonLd(site, siteConfig.url)];
 ---
 
-<Home site={site} strings={strings} posts={posts} />
+<Home
+  site={site}
+  strings={strings}
+  posts={posts}
+  canonicalUrl={absoluteUrl(homeHref())}
+  image={image}
+  jsonLd={jsonLd}
+/>

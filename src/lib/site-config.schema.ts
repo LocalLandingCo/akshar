@@ -84,6 +84,8 @@ export const siteConfigSchema = z
     title: z.string().min(1),
     tagline: z.string().optional(),
     description: z.string().min(1),
+    /** Default share image (site-relative path under public/), used when a post has no cover (spec.md §9). */
+    ogImage: z.string().optional(),
     /** BCP-47 language tag — drives <html lang> (spec.md §9, a correctness requirement). */
     language: z.string().min(1),
     dir: z.enum(['ltr', 'rtl']).default('ltr'),

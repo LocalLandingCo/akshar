@@ -1,7 +1,13 @@
 ---
+import SEOHead from '../../../lib/seo/SEOHead.astro';
 import type { SiteMeta, UIStrings } from '../../../lib/theme/contract';
 import '../base.css';
 import '../tokens.css';
+
+interface ShareImage {
+  url: string;
+  alt: string;
+}
 
 interface Props {
   site: SiteMeta;
@@ -9,22 +15,29 @@ interface Props {
   title: string;
   description: string;
   canonicalUrl?: string;
+  type?: 'website' | 'article';
+  image?: ShareImage;
+  jsonLd?: Record<string, unknown>[];
+  noindex?: boolean;
 }
 
-const { site, strings, title, description, canonicalUrl } = Astro.props;
-const pageTitle = title === site.title ? title : `${title} · ${site.title}`;
+const { site, strings, title, description, canonicalUrl, type, image, jsonLd, noindex } =
+  Astro.props;
 ---
 
 <html lang={site.language} dir={site.dir}>
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{pageTitle}</title>
-    <meta name="description" content={description} />
-    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
-    {site.rssHref && (
-      <link rel="alternate" type="application/rss+xml" title={site.title} href={site.rssHref} />
-    )}
+    <SEOHead
+      title={title}
+      siteTitle={site.title}
+      description={description}
+      canonicalUrl={canonicalUrl}
+      type={type}
+      image={image}
+      rssHref={site.rssHref}
+      jsonLd={jsonLd}
+      noindex={noindex}
+    />
     <slot name="head" />
   </head>
   <body>

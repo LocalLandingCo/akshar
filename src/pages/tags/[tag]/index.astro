@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import { getAllTags, isVisible, sortByDateDesc, toPostSummary } from '../../../lib/content/posts';
 import { buildSiteMeta } from '../../../lib/theme/site-meta';
-import { tagHref } from '../../../lib/urls';
+import { absoluteUrl, tagHref } from '../../../lib/urls';
 import TagIndex from '../../../themes/default/layouts/TagIndex.astro';
 import strings from '../../../themes/default/strings';
 
@@ -22,4 +22,10 @@ const posts = sortByDateDesc(
 const site = buildSiteMeta(allPages, strings, tagHref(tag));
 ---
 
-<TagIndex site={site} strings={strings} tag={tag} posts={posts} />
+<TagIndex
+  site={site}
+  strings={strings}
+  tag={tag}
+  posts={posts}
+  canonicalUrl={absoluteUrl(tagHref(tag))}
+/>

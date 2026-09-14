@@ -7,9 +7,10 @@ interface Props {
   strings: UIStrings;
   tags: TagRef[];
   archiveHref: string;
+  canonicalUrl: string;
 }
 
-const { site, strings, tags, archiveHref } = Astro.props;
+const { site, strings, tags, archiveHref, canonicalUrl } = Astro.props;
 ---
 
 <BaseLayout
@@ -17,6 +18,8 @@ const { site, strings, tags, archiveHref } = Astro.props;
   strings={strings}
   title={strings.search.title}
   description={strings.search.title}
+  canonicalUrl={canonicalUrl}
+  noindex
 >
   <h1>{strings.search.title}</h1>
   <form class="search-form" role="search" data-search-form>

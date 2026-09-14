@@ -8,9 +8,10 @@ interface Props {
   strings: UIStrings;
   section: SectionRef & { description?: string };
   posts: PostSummary[];
+  canonicalUrl: string;
 }
 
-const { site, strings, section, posts } = Astro.props;
+const { site, strings, section, posts, canonicalUrl } = Astro.props;
 ---
 
 <BaseLayout
@@ -18,6 +19,7 @@ const { site, strings, section, posts } = Astro.props;
   strings={strings}
   title={section.label}
   description={section.description ?? strings.section.description(section.label)}
+  canonicalUrl={canonicalUrl}
 >
   <h1>{section.label}</h1>
   {section.description && <p class="empty-state">{section.description}</p>}

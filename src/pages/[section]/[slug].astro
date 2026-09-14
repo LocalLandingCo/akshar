@@ -7,6 +7,8 @@ import {
   isVisible,
   toPostSummary,
 } from '../../lib/content/posts';
+import { blogPostingJsonLd } from '../../lib/seo/json-ld';
+import { postShareImage } from '../../lib/seo/image';
 import { buildSiteMeta } from '../../lib/theme/site-meta';
 import { absoluteUrl } from '../../lib/urls';
 import type { PostFull } from '../../lib/theme/contract';
@@ -34,6 +36,8 @@ const postFull: PostFull = {
 };
 
 const site = buildSiteMeta(allPages, strings, summary.href);
+const image = postShareImage(postFull.cover);
+const jsonLd = [blogPostingJsonLd(postFull, site, image?.url)];
 ---
 
-<Post site={site} strings={strings} post={postFull} />
+<Post site={site} strings={strings} post={postFull} image={image} jsonLd={jsonLd} />

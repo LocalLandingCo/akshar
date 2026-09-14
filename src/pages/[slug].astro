@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import siteConfig from '../../site.config';
 import { RESERVED_SLUGS } from '../lib/site-config.schema';
+import { siteShareImage } from '../lib/seo/image';
 import { buildSiteMeta } from '../lib/theme/site-meta';
 import { absoluteUrl, pageHref } from '../lib/urls';
 import type { PageFull } from '../lib/theme/contract';
@@ -44,4 +45,4 @@ const pageFull: PageFull = {
 const site = buildSiteMeta(allPages, strings, href);
 ---
 
-<Page site={site} strings={strings} page={pageFull} />
+<Page site={site} strings={strings} page={pageFull} image={siteShareImage()} />

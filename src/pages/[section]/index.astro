@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import siteConfig from '../../../site.config';
 import { getSection, isVisible, sortByDateDesc, toPostSummary } from '../../lib/content/posts';
 import { buildSiteMeta } from '../../lib/theme/site-meta';
-import { sectionHref } from '../../lib/urls';
+import { absoluteUrl, sectionHref } from '../../lib/urls';
 import SectionIndex from '../../themes/default/layouts/SectionIndex.astro';
 import strings from '../../themes/default/strings';
 
@@ -34,4 +34,5 @@ const site = buildSiteMeta(allPages, strings, sectionHref(sectionId));
     description: sectionConfig.description,
   }}
   posts={posts}
+  canonicalUrl={absoluteUrl(sectionHref(sectionId))}
 />

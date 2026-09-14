@@ -7,12 +7,23 @@ interface Props {
   site: SiteMeta;
   strings: UIStrings;
   posts: PostSummary[];
+  canonicalUrl: string;
+  image?: { url: string; alt: string };
+  jsonLd?: Record<string, unknown>[];
 }
 
-const { site, strings, posts } = Astro.props;
+const { site, strings, posts, canonicalUrl, image, jsonLd } = Astro.props;
 ---
 
-<BaseLayout site={site} strings={strings} title={site.title} description={site.description}>
+<BaseLayout
+  site={site}
+  strings={strings}
+  title={site.title}
+  description={site.description}
+  canonicalUrl={canonicalUrl}
+  image={image}
+  jsonLd={jsonLd}
+>
   {site.tagline && (
     <p class="empty-state" style="margin-bottom: var(--space-5);">
       {site.tagline}

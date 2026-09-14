@@ -52,3 +52,13 @@ export function rssHref(sectionId?: string): string {
 export function absoluteUrl(href: string): string {
   return new URL(href, siteConfig.url).toString();
 }
+
+/**
+ * Prefixes a raw asset path (as a writer types it in frontmatter or
+ * site.config.ts — no base, e.g. "/images/cover.jpg") with the configured
+ * base path. Unlike route hrefs, asset paths are files, not directories —
+ * no trailing slash.
+ */
+export function withBase(path: string): string {
+  return `${BASE}${path.replace(/^\/+/, '')}`;
+}

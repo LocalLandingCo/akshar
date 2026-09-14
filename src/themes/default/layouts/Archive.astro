@@ -7,9 +7,10 @@ interface Props {
   strings: UIStrings;
   /** Already sorted newest-first. */
   posts: PostSummary[];
+  canonicalUrl: string;
 }
 
-const { site, strings, posts } = Astro.props;
+const { site, strings, posts, canonicalUrl } = Astro.props;
 
 const byYear = new Map<number, PostSummary[]>();
 for (const post of posts) {
@@ -28,6 +29,7 @@ for (const post of posts) {
   strings={strings}
   title={strings.archive.title}
   description={strings.archive.title}
+  canonicalUrl={canonicalUrl}
 >
   <h1>{strings.archive.title}</h1>
   {posts.length === 0 ? (
