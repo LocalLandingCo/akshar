@@ -128,6 +128,8 @@ export interface UIStrings {
     noJsMessage: string;
     noResults: string;
     prompt: string;
+    /** Heading for the always-visible tag/archive browse section below the search box. */
+    browseHeading: string;
   };
   notFound: {
     title: string;

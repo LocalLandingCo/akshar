@@ -34,6 +34,7 @@ const strings: UIStrings = {
     noJsMessage: 'Search needs JavaScript enabled. Browse by tag or the archive instead.',
     noResults: 'No results. Try a different word, or browse by tag or the archive.',
     prompt: 'Type to search titles, excerpts, and tags.',
+    browseHeading: 'Browse',
   },
   notFound: {
     title: 'Page not found',

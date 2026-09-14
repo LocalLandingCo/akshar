@@ -48,6 +48,11 @@ export function rssHref(sectionId?: string): string {
   return sectionId ? `${sectionHref(sectionId)}rss.xml` : `${BASE}rss.xml`;
 }
 
+/** The build-time search index (spec.md §17), fetched only on the search page. */
+export function searchIndexHref(): string {
+  return `${BASE}search-index.json`;
+}
+
 /** Turns a site-relative href (already base-prefixed) into an absolute URL. */
 export function absoluteUrl(href: string): string {
   return new URL(href, siteConfig.url).toString();

@@ -1,5 +1,6 @@
 ---
 import type { SiteMeta, TagRef, UIStrings } from '../../../lib/theme/contract';
+import { searchIndexHref } from '../../../lib/urls';
 import BaseLayout from './BaseLayout.astro';
 
 interface Props {
@@ -22,7 +23,7 @@ const { site, strings, tags, archiveHref, canonicalUrl } = Astro.props;
   noindex
 >
   <h1>{strings.search.title}</h1>
-  <form class="search-form" role="search" data-search-form>
+  <form class="search-form" role="search" data-search-form data-index-href={searchIndexHref()}>
     <label class="visually-hidden" for="search-input">
       {strings.search.inputLabel}
     </label>
@@ -35,15 +36,28 @@ const { site, strings, tags, archiveHref, canonicalUrl } = Astro.props;
     />
     <button type="submit">{strings.search.inputLabel}</button>
   </form>
-  <p data-search-status class="empty-state">
+
+  {/* No-JS: the form above has nowhere to submit to — this is a static
+      site with no server (spec.md §6). Replaces the live status/results
+      region below, which only ever does anything with JS. */}
+  <noscript>
+    <p class="empty-state">{strings.search.noJsMessage}</p>
+  </noscript>
+  <p
+    data-search-status
+    class="empty-state"
+    data-prompt={strings.search.prompt}
+    data-no-results={strings.search.noResults}
+  >
     {strings.search.prompt}
   </p>
   <ul data-search-results class="post-list"></ul>
 
-  {/* No-JS fallback: search needs client-side matching (spec.md §17); this
-      is the "clear message plus tag and archive browsing" the spec calls for. */}
-  <noscript>
-    <p class="empty-state">{strings.search.noJsMessage}</p>
+  {/* Always visible, JS or not — the "offer a route onward" spec.md §17
+      requires for the empty, no-result, and no-query states, and simply
+      the normal way to browse this site. */}
+  <section>
+    <h2>{strings.search.browseHeading}</h2>
     <p>
       <a href={archiveHref}>{strings.nav.archiveLabel}</a>
     </p>
@@ -56,5 +70,77 @@ const { site, strings, tags, archiveHref, canonicalUrl } = Astro.props;
         ))}
       </ul>
     )}
-  </noscript>
+  </section>
+
+  <script>
+    import type { SearchEntry } from '../../../lib/search';
+    import { searchEntries } from '../../../lib/search/match';
+
+    const form = document.querySelector<HTMLFormElement>('[data-search-form]');
+    const input = document.querySelector<HTMLInputElement>('#search-input');
+    const status = document.querySelector<HTMLElement>('[data-search-status]');
+    const resultsEl = document.querySelector<HTMLUListElement>('[data-search-results]');
+
+    if (form && input && status && resultsEl) {
+      // Function declarations below don't retain the narrowing above (they
+      // could in principle be called before this block runs), so rebind to
+      // locals TypeScript knows are non-null.
+      const statusEl = status;
+      const resultsList = resultsEl;
+      const indexHref = form.dataset.indexHref ?? '';
+      const promptText = statusEl.dataset.prompt ?? '';
+      const noResultsText = statusEl.dataset.noResults ?? '';
+
+      let indexPromise: Promise<SearchEntry[]> | null = null;
+      function loadIndex(): Promise<SearchEntry[]> {
+        indexPromise ??= fetch(indexHref).then((response) => response.json());
+        return indexPromise;
+      }
+
+      function renderResults(entries: SearchEntry[]) {
+        resultsList.innerHTML = '';
+        const fragment = document.createDocumentFragment();
+        for (const entry of entries) {
+          const li = document.createElement('li');
+          li.className = 'post-list__item';
+
+          const heading = document.createElement('h2');
+          const link = document.createElement('a');
+          link.href = entry.href;
+          link.textContent = entry.title;
+          heading.appendChild(link);
+
+          const excerpt = document.createElement('p');
+          excerpt.textContent = entry.excerpt;
+
+          li.append(heading, excerpt);
+          fragment.appendChild(li);
+        }
+        resultsList.appendChild(fragment);
+      }
+
+      async function runQuery(rawQuery: string) {
+        const query = rawQuery.trim();
+        if (!query) {
+          statusEl.textContent = promptText;
+          renderResults([]);
+          return;
+        }
+
+        const index = await loadIndex();
+        const matches = searchEntries(index, query).map((result) => result.entry);
+        statusEl.textContent = matches.length === 0 ? noResultsText : '';
+        renderResults(matches);
+      }
+
+      let debounceTimer: ReturnType<typeof setTimeout> | undefined;
+      input.addEventListener('input', () => {
+        clearTimeout(debounceTimer);
+        const query = input.value;
+        debounceTimer = setTimeout(() => void runQuery(query), 150);
+      });
+
+      form.addEventListener('submit', (event) => event.preventDefault());
+    }
+  </script>
 </BaseLayout>
