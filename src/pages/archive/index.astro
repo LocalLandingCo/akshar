@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import { isVisible, sortByDateDesc, toPostSummary } from '../../lib/content/posts';
+import { siteShareImage } from '../../lib/seo/image';
 import { buildSiteMeta } from '../../lib/theme/site-meta';
 import { absoluteUrl, archiveHref } from '../../lib/urls';
 import Archive from '../../themes/default/layouts/Archive.astro';
@@ -13,4 +14,10 @@ const posts = sortByDateDesc(allPosts.filter(isVisible)).map(toPostSummary);
 const site = buildSiteMeta(allPages, strings, archiveHref());
 ---
 
-<Archive site={site} strings={strings} posts={posts} canonicalUrl={absoluteUrl(archiveHref())} />
+<Archive
+  site={site}
+  strings={strings}
+  posts={posts}
+  canonicalUrl={absoluteUrl(archiveHref())}
+  image={siteShareImage()}
+/>

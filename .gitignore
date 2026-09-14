@@ -23,6 +23,9 @@ Thumbs.db
 # coverage
 /coverage
 
+# Lighthouse CI local run artifacts
+.lighthouseci/
+
 # local-only assistant/session state — not part of the product
 .agents/
 .conversation/

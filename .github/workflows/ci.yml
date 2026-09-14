@@ -33,5 +33,15 @@ jobs:
       - name: Build
         run: npm run build
 
-      # Build-output assertions and Lighthouse CI (ADR-11, layers 2 and 3)
-      # are added once there is a real site to assert against.
+      # ADR-11 layer 2: assertions on the actual generated artifact —
+      # canonical URLs, OG tags, drafts absent, weight budgets, sitemap/RSS
+      # well-formed and correct, no internal link 404s.
+      - name: Build-output assertions
+        run: npx vitest run --config vitest.build.config.ts
+
+      # ADR-11 layer 3: the ≥95 performance/accessibility/best-practices/SEO
+      # budgets in spec.md §11, enforced rather than aspirational.
+      - name: Lighthouse CI
+        run: npm run lhci
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

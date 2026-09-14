@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import siteConfig from '../../../site.config';
 import { getSection, isVisible, sortByDateDesc, toPostSummary } from '../../lib/content/posts';
+import { siteShareImage } from '../../lib/seo/image';
 import { buildSiteMeta } from '../../lib/theme/site-meta';
 import { absoluteUrl, sectionHref } from '../../lib/urls';
 import SectionIndex from '../../themes/default/layouts/SectionIndex.astro';
@@ -35,4 +36,5 @@ const site = buildSiteMeta(allPages, strings, sectionHref(sectionId));
   }}
   posts={posts}
   canonicalUrl={absoluteUrl(sectionHref(sectionId))}
+  image={siteShareImage()}
 />

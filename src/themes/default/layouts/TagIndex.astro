@@ -9,9 +9,10 @@ interface Props {
   tag: string;
   posts: PostSummary[];
   canonicalUrl: string;
+  image?: { url: string; alt: string };
 }
 
-const { site, strings, tag, posts, canonicalUrl } = Astro.props;
+const { site, strings, tag, posts, canonicalUrl, image } = Astro.props;
 ---
 
 <BaseLayout
@@ -20,6 +21,7 @@ const { site, strings, tag, posts, canonicalUrl } = Astro.props;
   title={strings.tag.title(tag)}
   description={strings.tag.title(tag)}
   canonicalUrl={canonicalUrl}
+  image={image}
 >
   <h1>{strings.tag.title(tag)}</h1>
   {posts.length > 0 ? (

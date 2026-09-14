@@ -10,6 +10,7 @@ export default defineSiteConfig({
   title: 'An Akshar Site',
   tagline: 'Notes from a writer who owns their words',
   description: 'An example publication built with Akshar — an open-source, self-owned blog engine.',
+  ogImage: '/og-default.jpg',
   language: 'en',
   dir: 'ltr',
 
