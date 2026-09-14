@@ -1,0 +1,70 @@
+name: Deploy
+
+# Builds and deploys on every push to the default branch — this is the
+# writer's publish path too: the hosted CMS commits straight to main
+# (spec.md §6, Tier 2), so a post going live IS this workflow running
+# (spec.md §12, "Ongoing... publish in /admin → commit → CI build →
+# deploy. Target: live within five minutes, zero human steps.").
+#
+# Gate is deliberately lean: typecheck + build + the deterministic
+# build-output assertions (ADR-11 layer 2) — never lint/format (irrelevant
+# to a content-only commit) and never Lighthouse (ADR-11 layer 3; slow and
+# has real run-to-run variance, which is the wrong thing to block a
+# writer's publish on). Both of those still run on every push/PR via
+# ci.yml, which is where a genuine regression gets caught before it
+# reaches main.
+#
+# A failing build here never touches the live site — GitHub Pages only
+# updates on a successful deploy-pages run, so "leaves the previously
+# deployed site untouched" (spec.md §12) holds for free.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one deploy in flight; a second push waits rather than racing the first.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      # Builds (typecheck included via `astro check`), then asserts on the
+      # actual output — canonical URLs, weight budgets, no draft leaked, no
+      # broken internal link. A failure here stops the workflow before
+      # anything is uploaded.
+      - name: Build and verify
+        run: npm run test:build-output
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
