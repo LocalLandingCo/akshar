@@ -68,13 +68,13 @@ describe('Substack export fixture', () => {
     expect(names).toContain('subscribers.csv');
     expect(
       names.filter((name) => name.startsWith('posts/') && name.endsWith('.html')),
-    ).toHaveLength(5);
+    ).toHaveLength(6);
   });
 
   it('posts.csv parses with csv-parse and has every expected row', () => {
     const csv = zip.getEntry('posts.csv')!.getData().toString('utf-8');
     const rows = parseCsv(csv, { columns: true }) as Array<Record<string, string>>;
-    expect(rows).toHaveLength(5);
+    expect(rows).toHaveLength(6);
     expect(rows.map((r) => r.title)).toContain('पाऊस');
   });
 
