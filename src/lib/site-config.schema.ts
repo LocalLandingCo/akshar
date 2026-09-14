@@ -91,6 +91,16 @@ export const siteConfigSchema = z
     description: z.string().min(1),
     /** Default share image (site-relative path under public/), used when a post has no cover (spec.md §9). */
     ogImage: z.string().optional(),
+    /**
+     * "owner/repo" on GitHub. Only needed for the generated Decap/Sveltia
+     * config (its backend needs to know the repo explicitly); Pages CMS
+     * discovers it from which repo the writer connects on app.pagescms.org,
+     * so .pages.yml doesn't use this at all (ADR-5).
+     */
+    repository: z
+      .string()
+      .regex(/^[^/\s]+\/[^/\s]+$/, 'repository must look like "owner/repo"')
+      .optional(),
     /** BCP-47 language tag — drives <html lang> (spec.md §9, a correctness requirement). */
     language: z.string().min(1),
     dir: z.enum(['ltr', 'rtl']).default('ltr'),

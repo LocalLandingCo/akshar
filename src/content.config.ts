@@ -32,8 +32,22 @@ const postSchema = ({ image }: SchemaContext) =>
         .default([]),
       /** Falls back to a derived summary of the body (src/lib/content/posts.ts). */
       excerpt: z.string().optional(),
-      /** An image file next to the post (spec.md §4 Media — "alongside content"). */
-      cover: image().optional(),
+      // Two forms, both real: a relative path next to the post (spec.md §4
+      // Media — "alongside content") goes through astro:assets and gets
+      // fully optimized (avif/webp/responsive srcset — see src/lib/seo and
+      // the theme's Picture usage). A site-root-absolute path ("/images/…")
+      // is what the hosted CMS actually produces — Pages CMS's and Decap/
+      // Sveltia's media systems write a public-servable URL, which by
+      // construction can't be a content-relative file astro:assets can
+      // process at build time. Both are accepted so a cover uploaded
+      // through /admin doesn't fail the build; only the former gets the
+      // optimized <Picture> treatment.
+      // Order matters: a plain absolute path must be checked FIRST. Zod's
+      // union tries members in array order and stops at the first success
+      // — but image()'s validator doesn't fail soft on a path it can't
+      // resolve as a relative file, it throws immediately. Putting the
+      // string check first means it never gets that far for a "/…" value.
+      cover: z.union([z.string().startsWith('/'), image()]).optional(),
       coverAlt: z.string().optional(),
       /** Excluded from production builds; previewable locally and in the editor. */
       draft: z.boolean().default(false),

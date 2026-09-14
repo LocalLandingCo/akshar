@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Content Manager</title>
+    <link rel="icon" href="data:," />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--
+      On-domain editor (spec.md §6, Tier 2 alternative; also Tier 1 for
+      local editing). Loading a script from a CDN here is a deliberate,
+      sanctioned exception to "no third-party JavaScript" (spec.md §11,
+      §14) — that rule is about the reader-facing site; this page is a
+      writer-only authoring tool, never linked from it, never indexed
+      (robots.txt covers /admin/ — see astro.config.mjs's sitemap filter
+      and the generated robots.txt).
+      Version pinned for reproducible builds (spec.md §12); bump deliberately.
+    -->
+    <script src="https://unpkg.com/@sveltia/cms@0.212.0/dist/sveltia-cms.js" type="module"></script>
+  </head>
+  <body></body>
+</html>

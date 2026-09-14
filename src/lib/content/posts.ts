@@ -112,8 +112,16 @@ export function toPostSummary(post: Post): PostSummary {
     excerpt: getExcerpt(post),
     section: { id: section, label: sectionConfig?.label ?? section, href: sectionHref(section) },
     tags: post.data.tags.map((tag) => ({ name: tag, href: tagHref(tag) })),
+    // `cover` is either an astro:assets-processed object (has width/height)
+    // or a plain CMS-uploaded path string (content.config.ts) — only the
+    // former carries known dimensions.
     cover: cover
-      ? { src: cover, alt: post.data.coverAlt ?? '', width: cover.width, height: cover.height }
+      ? {
+          src: cover,
+          alt: post.data.coverAlt ?? '',
+          width: typeof cover === 'string' ? undefined : cover.width,
+          height: typeof cover === 'string' ? undefined : cover.height,
+        }
       : undefined,
     readingTimeMinutes: siteConfig.features.readingTime
       ? getReadingTimeMinutes(post.body ?? '')

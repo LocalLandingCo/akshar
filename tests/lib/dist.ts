@@ -26,7 +26,10 @@ export function listHtmlFiles(): string[] {
     }
   }
   walk(DIST_DIR);
-  return out;
+  // /admin/ is a third-party CMS shell copied verbatim from public/admin/
+  // (spec.md §6) — not an Astro-generated page, exempt from every
+  // reader-facing assertion here (SEO tags, weight budgets, link-checking).
+  return out.filter((file) => !file.startsWith('/admin/'));
 }
 
 export function readDist(relativePath: string): string {

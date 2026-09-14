@@ -19,6 +19,8 @@
     "test": "vitest run",
     "test:build-output": "npm run build && vitest run --config vitest.build.config.ts",
     "lhci": "lhci autorun",
+    "cms:generate": "tsx scripts/generate-cms-config.ts",
+    "cms": "decap-server",
     "prepare": "node scripts/install-git-hooks.mjs"
   },
   "dependencies": {
@@ -32,13 +34,16 @@
     "@eslint/js": "^10.0.1",
     "@lhci/cli": "^0.15.1",
     "astro-eslint-parser": "^3.1.0",
+    "decap-server": "^3.11.2",
     "eslint": "^10.10.0",
     "eslint-plugin-astro": "^3.1.0",
     "fast-xml-parser": "^5.11.1",
     "prettier": "^3.9.6",
     "prettier-plugin-astro": "^1.0.0",
+    "tsx": "^4.23.13",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.70.0",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.0",
+    "yaml": "^2.9.1"
   }
 }

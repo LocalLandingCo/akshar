@@ -18,14 +18,19 @@ export function siteShareImage(): ShareImage | undefined {
 
 /**
  * A post's cover if it has one, else the site default — "a shared link must
- * preview as *that post*" (spec.md §9). A cover's `.src` is already an
- * Astro-processed build output path (base-aware), unlike the site default —
- * it goes straight to `absoluteUrl`, no `withBase`.
+ * preview as *that post*" (spec.md §9). Two forms (content.config.ts): a
+ * processed astro:assets object, whose `.src` is already a base-aware build
+ * output path (straight to `absoluteUrl`); or a plain CMS-uploaded
+ * public-relative path, which needs `withBase` first — same as the site
+ * default.
  */
 export function postShareImage(cover?: CoverImage): ShareImage | undefined {
   if (cover) {
-    const { src } = cover.src as ImageMetadata;
-    return { url: absoluteUrl(src), alt: cover.alt };
+    const url =
+      typeof cover.src === 'string'
+        ? absoluteUrl(withBase(cover.src))
+        : absoluteUrl((cover.src as ImageMetadata).src);
+    return { url, alt: cover.alt };
   }
   return siteShareImage();
 }

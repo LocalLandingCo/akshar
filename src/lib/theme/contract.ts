@@ -53,16 +53,18 @@ export interface SectionRef {
 
 export interface CoverImage {
   /**
-   * An Astro-processed image reference (`astro:assets` — the content
-   * schema's `image()` result). Typed `unknown` here to keep this contract
-   * file free of Astro-internal asset types; a theme narrows it to
-   * `ImageMetadata` at the one place it actually renders `<Picture>`, the
-   * same pattern used for `Content` below.
+   * Either an Astro-processed image reference (`astro:assets` — the
+   * content schema's `image()` result) or a plain site-root-absolute
+   * string path (what the hosted CMS's media uploads actually produce —
+   * see content.config.ts). Typed `unknown` here to keep this contract
+   * file free of Astro-internal asset types; a theme narrows it at the one
+   * place it actually renders the cover, the same pattern used for
+   * `Content` below. Only the processed form carries known dimensions.
    */
   src: unknown;
   alt: string;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
 }
 
 /** What a post looks like in a list (home, section index, tag index, archive). */

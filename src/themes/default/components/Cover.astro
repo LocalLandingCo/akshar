@@ -1,0 +1,33 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Picture } from 'astro:assets';
+import { withBase } from '../../../lib/urls';
+
+interface Props {
+  /** A cover's `src` — either an astro:assets-processed object or a plain CMS-uploaded path string. */
+  src: unknown;
+  alt: string;
+  loading: 'eager' | 'lazy';
+  widths: number[];
+  sizes: string;
+}
+
+const { src, alt, loading, widths, sizes } = Astro.props;
+const isProcessed = typeof src !== 'string';
+---
+
+{isProcessed ? (
+  <Picture
+    src={src as ImageMetadata}
+    alt={alt}
+    widths={widths}
+    sizes={sizes}
+    formats={['avif', 'webp']}
+    loading={loading}
+  />
+) : (
+  // A CMS-uploaded cover: a plain public/ path, not run through
+  // astro:assets (content.config.ts explains why) — a real <img>, just
+  // without responsive variants or known intrinsic dimensions.
+  <img src={withBase(src as string)} alt={alt} loading={loading} decoding="async" />
+)}
