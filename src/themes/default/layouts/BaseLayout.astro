@@ -50,6 +50,18 @@ const tokenOverrideCss = tokenOverrideEntries.length
       jsonLd={jsonLd}
       noindex={noindex}
     />
+    {
+      // Off by default, stays that way unless a writer explicitly
+      // configures it (spec.md §16 — a permanent mission commitment, not a
+      // default setting). The one script tag it injects when set.
+      siteConfig.analytics?.enabled && (
+        <script
+          is:inline
+          src={siteConfig.analytics.src}
+          {...siteConfig.analytics.attributes}
+        ></script>
+      )
+    }
     <slot name="head" />
   </head>
   <body>
