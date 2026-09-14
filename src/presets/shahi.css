@@ -1,0 +1,62 @@
+/*
+ * Shahi — शाई, "ink". Cool, dense, and precise: pale blue-grey paper, a
+ * near-black ink text color, a deep red-ink accent (a proofreader's pen,
+ * not a decoration). Tighter type, a narrower measure, square corners —
+ * built for essays and criticism, not poetry.
+ */
+:root {
+  color-scheme: light dark;
+
+  --color-bg: #f2f3f5;
+  --color-surface: #e7e9ed;
+  --color-text: #14181f;
+  --color-muted: #4b5563;
+  --color-border: #767e8a;
+  --color-primary: #14181f;
+  --color-on-primary: #f2f3f5;
+  --color-accent: #7a2130;
+  --color-on-accent: #ffffff;
+  --color-link: #1d4ed8;
+  --color-link-visited: #6d28d9;
+
+  --font-sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --font-mono: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  --font-body: var(--font-serif);
+  --font-ui: var(--font-sans);
+
+  --text-sm: 0.8125rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.3rem;
+  --text-xl: 1.6rem;
+  --text-2xl: 2rem;
+  --leading-body: 1.55;
+  --leading-heading: 1.15;
+  --letter-spacing-body: normal;
+
+  --space-1: 0.2rem;
+  --space-2: 0.4rem;
+  --space-3: 0.8rem;
+  --space-4: 1.25rem;
+  --space-5: 2rem;
+  --space-6: 3.25rem;
+
+  --radius: 0.125rem;
+  --measure: 64ch;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0f1216;
+    --color-surface: #171b21;
+    --color-text: #e6e8eb;
+    --color-muted: #a3aab5;
+    --color-border: #626b78;
+    --color-primary: #e6e8eb;
+    --color-on-primary: #0f1216;
+    --color-accent: #d9707e;
+    --color-on-accent: #1a0c0f;
+    --color-link: #7aa2ff;
+    --color-link-visited: #c9a8ff;
+  }
+}

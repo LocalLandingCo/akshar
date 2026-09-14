@@ -1,0 +1,67 @@
+/*
+ * Ol — ओळ, "line" (a line of verse, a row of text). The Devanagari-tuned
+ * preset spec.md §7 requires: a serif pairing with real Devanagari glyph
+ * support ahead of an English default, noticeably more generous line
+ * height and letter-spacing than the other presets — set for the script,
+ * not inherited from Latin typesetting — and a warm saffron/kumkum
+ * palette. Reads well for Marathi/Hindi/Sanskrit; degrades to its Georgia
+ * fallback cleanly for Latin text.
+ */
+:root {
+  color-scheme: light dark;
+
+  --color-bg: #fbf6ed;
+  --color-surface: #f1e7d3;
+  --color-text: #2b1f14;
+  --color-muted: #6b5843;
+  --color-border: #93816c;
+  --color-primary: #2b1f14;
+  --color-on-primary: #fbf6ed;
+  --color-accent: #c77d1f;
+  --color-on-accent: #2b1f14;
+  --color-link: #b1440e;
+  --color-link-visited: #7a3f7a;
+
+  --font-serif: 'Noto Serif Devanagari', 'Kohinoor Devanagari', 'Nirmala UI', Georgia, serif;
+  --font-sans: 'Noto Sans Devanagari', 'Kohinoor Devanagari', 'Nirmala UI', system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
+  --font-body: var(--font-serif);
+  --font-ui: var(--font-sans);
+
+  --text-sm: 0.9375rem;
+  --text-base: 1.1875rem;
+  --text-lg: 1.4375rem;
+  --text-xl: 1.8125rem;
+  --text-2xl: 2.3125rem;
+  /* Devanagari's vowel signs and conjuncts need more room, vertically and
+     between characters, than Latin text at the same point size. */
+  --leading-body: 1.95;
+  --leading-heading: 1.4;
+  --letter-spacing-body: 0.01em;
+
+  --space-1: 0.3rem;
+  --space-2: 0.6rem;
+  --space-3: 1.1rem;
+  --space-4: 1.75rem;
+  --space-5: 2.75rem;
+  --space-6: 4.25rem;
+
+  --radius: 0.5rem;
+  --measure: 62ch;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #1c140d;
+    --color-surface: #251b12;
+    --color-text: #f2e6d3;
+    --color-muted: #c2ad91;
+    --color-border: #8a7960;
+    --color-primary: #f2e6d3;
+    --color-on-primary: #1c140d;
+    --color-accent: #e3a53f;
+    --color-on-accent: #1c140d;
+    --color-link: #e2895a;
+    --color-link-visited: #c99bd6;
+  }
+}

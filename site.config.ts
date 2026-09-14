@@ -27,7 +27,7 @@ export default defineSiteConfig({
 
   theme: {
     name: 'default',
-    preset: 'default',
+    preset: 'kagad',
   },
 
   features: {

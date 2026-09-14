@@ -1,0 +1,62 @@
+/*
+ * Kore — कोरे, "blank, unwritten". Crisp and neutral: pure white, a cool
+ * grey-blue for muted text and borders, a teal accent, square-ish corners.
+ * Wide measure, clean sans throughout. The plainest preset in the set — for
+ * a writer who wants the words to carry everything and nothing else.
+ */
+:root {
+  color-scheme: light dark;
+
+  --color-bg: #ffffff;
+  --color-surface: #f2f4f6;
+  --color-text: #14181c;
+  --color-muted: #5b636b;
+  --color-border: #828a91;
+  --color-primary: #14181c;
+  --color-on-primary: #ffffff;
+  --color-accent: #0e7c86;
+  --color-on-accent: #ffffff;
+  --color-link: #0a66c2;
+  --color-link-visited: #6741a8;
+
+  --font-sans: -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: ui-monospace, 'SF Mono', Consolas, monospace;
+  --font-body: var(--font-sans);
+  --font-ui: var(--font-sans);
+
+  --text-sm: 0.875rem;
+  --text-base: 1.125rem;
+  --text-lg: 1.375rem;
+  --text-xl: 1.8rem;
+  --text-2xl: 2.375rem;
+  --leading-body: 1.6;
+  --leading-heading: 1.2;
+  --letter-spacing-body: normal;
+
+  --space-1: 0.3rem;
+  --space-2: 0.6rem;
+  --space-3: 1.15rem;
+  --space-4: 1.75rem;
+  --space-5: 2.9rem;
+  --space-6: 4.5rem;
+
+  --radius: 0.1875rem;
+  --measure: 70ch;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #101316;
+    --color-surface: #181c20;
+    --color-text: #eef1f3;
+    --color-muted: #a9b1b8;
+    --color-border: #5f6870;
+    --color-primary: #eef1f3;
+    --color-on-primary: #101316;
+    --color-accent: #5fd3dc;
+    --color-on-accent: #0a2326;
+    --color-link: #7fb2ff;
+    --color-link-visited: #b79ce8;
+  }
+}

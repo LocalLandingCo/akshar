@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { listPresetIds } from './theme/presets';
 
 // The single source of truth for everything spec.md §8 says must be a config
 // change, never a core edit: identity, language, sections, navigation, theme,
@@ -57,9 +58,13 @@ const analyticsSchema = z
   })
   .optional();
 
+const presetIds = listPresetIds();
+
 const themeSchema = z.object({
   name: z.string().min(1).default('default'),
-  preset: z.string().min(1),
+  preset: z.enum(presetIds as [string, ...string[]], {
+    error: () => `theme.preset must be one of: ${presetIds.join(', ')}`,
+  }),
   /** Individual token overrides on top of the chosen preset (spec.md §7 — "the personality"). */
   tokens: z.record(z.string(), z.string()).default({}),
 });

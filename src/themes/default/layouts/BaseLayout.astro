@@ -1,8 +1,9 @@
 ---
 import SEOHead from '../../../lib/seo/SEOHead.astro';
 import type { SiteMeta, UIStrings } from '../../../lib/theme/contract';
+import { loadPresetCss } from '../../../lib/theme/presets';
+import siteConfig from '../../../../site.config';
 import '../base.css';
-import '../tokens.css';
 
 interface ShareImage {
   url: string;
@@ -23,10 +24,21 @@ interface Props {
 
 const { site, strings, title, description, canonicalUrl, type, image, jsonLd, noindex } =
   Astro.props;
+
+// Preset = the personality (spec.md §7) — chosen in site.config.ts, loaded
+// at build time, never a runtime request. Individual token overrides on
+// top of it come from the same file and win by CSS source order.
+const presetCss = loadPresetCss(siteConfig.theme.preset);
+const tokenOverrideEntries = Object.entries(siteConfig.theme.tokens);
+const tokenOverrideCss = tokenOverrideEntries.length
+  ? `:root {\n${tokenOverrideEntries.map(([key, value]) => `  --${key}: ${value};`).join('\n')}\n}`
+  : '';
 ---
 
 <html lang={site.language} dir={site.dir}>
   <head>
+    <style is:global set:html={presetCss}></style>
+    {tokenOverrideCss && <style is:global set:html={tokenOverrideCss}></style>}
     <SEOHead
       title={title}
       siteTitle={site.title}

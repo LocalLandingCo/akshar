@@ -95,14 +95,23 @@ describe('weight budgets (spec.md §11, compressed)', () => {
     }
   });
 
-  it('the shared theme CSS stays under 20 KB compressed', () => {
-    // Bundled under dist/_astro/ with a content hash; there is exactly one
-    // theme in the MVP so exactly one CSS bundle.
+  it('the theme CSS (shared file + inlined preset) stays under 20 KB compressed', () => {
+    // base.css is structural and never varies per build, so it's a real
+    // external, cacheable stylesheet under dist/_astro/. The active preset
+    // is a build-time choice from site.config.ts, which can't participate
+    // in Astro's static per-page CSS-link analysis (that needs a literal,
+    // unconditional import) — it's inlined as a <style> tag instead
+    // (BaseLayout.astro). Both count against the one CSS budget.
     const html = readDist('/index.html');
-    const match = html.match(/href="(\/_astro\/[^"]+\.css)"/);
-    expect(match, 'expected a bundled theme stylesheet link on the home page').toBeTruthy();
-    const css = readDist(match![1]);
-    expect(gzipSize(css)).toBeLessThan(20 * KB);
+    const linkMatch = html.match(/href="(\/_astro\/[^"]+\.css)"/);
+    expect(linkMatch, 'expected a bundled theme stylesheet link on the home page').toBeTruthy();
+    const externalCss = readDist(linkMatch![1]);
+
+    const inlineMatch = html.match(/<style>([\s\S]*?)<\/style>/);
+    expect(inlineMatch, 'expected the preset to be inlined as a <style> tag').toBeTruthy();
+    const inlineCss = inlineMatch![1];
+
+    expect(gzipSize(externalCss) + gzipSize(inlineCss)).toBeLessThan(20 * KB);
   });
 
   it('every page stays under 30 KB of HTML, compressed', () => {
