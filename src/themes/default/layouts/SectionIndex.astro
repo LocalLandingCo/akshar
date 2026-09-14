@@ -1,0 +1,33 @@
+---
+import type { PostSummary, SectionRef, SiteMeta, UIStrings } from '../../../lib/theme/contract';
+import PostCard from '../components/PostCard.astro';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  site: SiteMeta;
+  strings: UIStrings;
+  section: SectionRef & { description?: string };
+  posts: PostSummary[];
+}
+
+const { site, strings, section, posts } = Astro.props;
+---
+
+<BaseLayout
+  site={site}
+  strings={strings}
+  title={section.label}
+  description={section.description ?? strings.section.description(section.label)}
+>
+  <h1>{section.label}</h1>
+  {section.description && <p class="empty-state">{section.description}</p>}
+  {posts.length > 0 ? (
+    <ul class="post-list">
+      {posts.map((post) => (
+        <PostCard post={post} site={site} strings={strings} showSection={false} />
+      ))}
+    </ul>
+  ) : (
+    <p class="empty-state">{strings.common.noPostsYet}</p>
+  )}
+</BaseLayout>

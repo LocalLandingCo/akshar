@@ -64,6 +64,12 @@ const themeSchema = z.object({
   tokens: z.record(z.string(), z.string()).default({}),
 });
 
+/** Reserved top-level URL segments — a section id or page slug colliding with
+ * one of these would shadow or be shadowed by a core route (spec.md §7: the
+ * core owns what routes exist). Checked here for sections; pages are
+ * checked at content-load time since page slugs aren't known to this schema. */
+export const RESERVED_SLUGS = ['tags', 'archive', 'search'] as const;
+
 export const siteConfigSchema = z
   .object({
     /** Absolute site URL, no trailing slash. Everything derives from this (ADR-9). */
@@ -104,6 +110,13 @@ export const siteConfigSchema = z
         });
       }
       ids.add(section.id);
+      if ((RESERVED_SLUGS as readonly string[]).includes(section.id)) {
+        ctx.addIssue({
+          code: 'custom',
+          message: `section id "${section.id}" collides with a reserved core route (${RESERVED_SLUGS.join(', ')})`,
+          path: ['sections', i, 'id'],
+        });
+      }
     }
   });
 

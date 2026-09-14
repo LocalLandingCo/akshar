@@ -1,0 +1,52 @@
+---
+import type { PostFull, SiteMeta, UIStrings } from '../../../lib/theme/contract';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  site: SiteMeta;
+  strings: UIStrings;
+  post: PostFull;
+}
+
+const { site, strings, post } = Astro.props;
+// The contract types `Content` as `unknown` to keep the public contract
+// decoupled from Astro's internal component-factory type; narrowed here,
+// at the one place it's actually rendered.
+const Content = post.Content as import('astro/runtime/server/index.js').AstroComponentFactory;
+const formattedDate = new Intl.DateTimeFormat(site.language, { dateStyle: 'long' }).format(
+  post.date,
+);
+---
+
+<BaseLayout
+  site={site}
+  strings={strings}
+  title={post.title}
+  description={post.description}
+  canonicalUrl={post.canonicalUrl}
+>
+  <article>
+    <header class="post-header">
+      <a href={post.section.href}>{post.section.label}</a>
+      <h1>{post.title}</h1>
+      <div class="post-meta">
+        <time datetime={post.date.toISOString()}>{strings.post.publishedOn(formattedDate)}</time>
+        {post.readingTimeMinutes !== undefined && (
+          <span>{strings.post.readingTime(post.readingTimeMinutes)}</span>
+        )}
+      </div>
+      {post.tags.length > 0 && (
+        <ul class="tag-list" aria-label={strings.post.tagsLabel}>
+          {post.tags.map((tag) => (
+            <li>
+              <a href={tag.href}>{tag.name}</a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </header>
+    <div class="post-content">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

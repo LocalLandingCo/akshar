@@ -1,16 +1,16 @@
 ---
+import { getCollection } from 'astro:content';
+import { isVisible, sortByDateDesc, toPostSummary } from '../lib/content/posts';
+import { buildSiteMeta } from '../lib/theme/site-meta';
+import { homeHref } from '../lib/urls';
+import Home from '../themes/default/layouts/Home.astro';
+import strings from '../themes/default/strings';
+
+const allPosts = await getCollection('posts');
+const allPages = await getCollection('pages');
+
+const posts = sortByDateDesc(allPosts.filter(isVisible)).map(toPostSummary);
+const site = buildSiteMeta(allPages, strings, homeHref());
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body>
-    <h1>Astro</h1>
-  </body>
-</html>
+<Home site={site} strings={strings} posts={posts} />

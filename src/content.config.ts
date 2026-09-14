@@ -13,7 +13,17 @@ const postSchema = z
     date: z.coerce.date(),
     /** Overrides the filename-derived slug (spec.md §4). Section is always derived from the folder. */
     slug: z.string().min(1).optional(),
-    tags: z.array(z.string().min(1)).default([]),
+    // NFC-normalized so two visually identical tags from different input
+    // sources (CMS, phone keyboard, paste) group onto the same tag page —
+    // the same load-bearing rule as search (spec.md §17).
+    tags: z
+      .array(
+        z
+          .string()
+          .min(1)
+          .transform((tag) => tag.normalize('NFC')),
+      )
+      .default([]),
     /** Falls back to a derived summary of the body (src/lib/content/posts.ts). */
     excerpt: z.string().optional(),
     /** Path to an image in the repo. Becomes an optimized `image()` field in the image-pipeline phase. */

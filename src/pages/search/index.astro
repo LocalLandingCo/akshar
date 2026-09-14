@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+import { getAllTags, isVisible } from '../../lib/content/posts';
+import { buildSiteMeta } from '../../lib/theme/site-meta';
+import { archiveHref, searchHref, tagHref } from '../../lib/urls';
+import Search from '../../themes/default/layouts/Search.astro';
+import strings from '../../themes/default/strings';
+
+const allPosts = (await getCollection('posts')).filter(isVisible);
+const allPages = await getCollection('pages');
+
+const tags = getAllTags(allPosts).map((tag) => ({ name: tag, href: tagHref(tag) }));
+const site = buildSiteMeta(allPages, strings, searchHref());
+---
+
+<Search site={site} strings={strings} tags={tags} archiveHref={archiveHref()} />

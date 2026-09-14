@@ -1,0 +1,11 @@
+---
+import { getCollection } from 'astro:content';
+import { buildSiteMeta } from '../lib/theme/site-meta';
+import NotFound from '../themes/default/layouts/NotFound.astro';
+import strings from '../themes/default/strings';
+
+const allPages = await getCollection('pages');
+const site = buildSiteMeta(allPages, strings);
+---
+
+<NotFound site={site} strings={strings} />

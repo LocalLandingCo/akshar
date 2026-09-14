@@ -1,0 +1,57 @@
+---
+import type { SiteMeta, TagRef, UIStrings } from '../../../lib/theme/contract';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  site: SiteMeta;
+  strings: UIStrings;
+  tags: TagRef[];
+  archiveHref: string;
+}
+
+const { site, strings, tags, archiveHref } = Astro.props;
+---
+
+<BaseLayout
+  site={site}
+  strings={strings}
+  title={strings.search.title}
+  description={strings.search.title}
+>
+  <h1>{strings.search.title}</h1>
+  <form class="search-form" role="search" data-search-form>
+    <label class="visually-hidden" for="search-input">
+      {strings.search.inputLabel}
+    </label>
+    <input
+      id="search-input"
+      name="q"
+      type="search"
+      placeholder={strings.search.placeholder}
+      autocomplete="off"
+    />
+    <button type="submit">{strings.search.inputLabel}</button>
+  </form>
+  <p data-search-status class="empty-state">
+    {strings.search.prompt}
+  </p>
+  <ul data-search-results class="post-list"></ul>
+
+  {/* No-JS fallback: search needs client-side matching (spec.md §17); this
+      is the "clear message plus tag and archive browsing" the spec calls for. */}
+  <noscript>
+    <p class="empty-state">{strings.search.noJsMessage}</p>
+    <p>
+      <a href={archiveHref}>{strings.nav.archiveLabel}</a>
+    </p>
+    {tags.length > 0 && (
+      <ul class="tag-list">
+        {tags.map((tag) => (
+          <li>
+            <a href={tag.href}>{tag.name}</a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </noscript>
+</BaseLayout>

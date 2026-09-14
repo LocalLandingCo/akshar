@@ -1,0 +1,30 @@
+---
+import type { PageFull, SiteMeta, UIStrings } from '../../../lib/theme/contract';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  site: SiteMeta;
+  strings: UIStrings;
+  page: PageFull;
+}
+
+const { site, strings, page } = Astro.props;
+const Content = page.Content as import('astro/runtime/server/index.js').AstroComponentFactory;
+---
+
+<BaseLayout
+  site={site}
+  strings={strings}
+  title={page.title}
+  description={page.description ?? site.description}
+  canonicalUrl={page.canonicalUrl}
+>
+  <article>
+    <header class="post-header">
+      <h1>{page.title}</h1>
+    </header>
+    <div class="post-content">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

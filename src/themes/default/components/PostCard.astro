@@ -1,0 +1,39 @@
+---
+import type { PostSummary, SiteMeta, UIStrings } from '../../../lib/theme/contract';
+
+interface Props {
+  post: PostSummary;
+  site: SiteMeta;
+  strings: UIStrings;
+  /** Show the section label — off on a section's own index, where it's redundant. */
+  showSection?: boolean;
+}
+
+const { post, site, strings, showSection = true } = Astro.props;
+const formattedDate = new Intl.DateTimeFormat(site.language, { dateStyle: 'long' }).format(
+  post.date,
+);
+---
+
+<li class="post-list__item">
+  <h2>
+    <a href={post.href}>{post.title}</a>
+  </h2>
+  <div class="post-meta">
+    <time datetime={post.date.toISOString()}>{strings.post.publishedOn(formattedDate)}</time>
+    {showSection && <a href={post.section.href}>{post.section.label}</a>}
+    {post.readingTimeMinutes !== undefined && (
+      <span>{strings.post.readingTime(post.readingTimeMinutes)}</span>
+    )}
+  </div>
+  <p>{post.excerpt}</p>
+  {post.tags.length > 0 && (
+    <ul class="tag-list" aria-label={strings.post.tagsLabel}>
+      {post.tags.map((tag) => (
+        <li>
+          <a href={tag.href}>{tag.name}</a>
+        </li>
+      ))}
+    </ul>
+  )}
+</li>

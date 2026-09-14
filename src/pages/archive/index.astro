@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+import { isVisible, sortByDateDesc, toPostSummary } from '../../lib/content/posts';
+import { buildSiteMeta } from '../../lib/theme/site-meta';
+import { archiveHref } from '../../lib/urls';
+import Archive from '../../themes/default/layouts/Archive.astro';
+import strings from '../../themes/default/strings';
+
+const allPosts = await getCollection('posts');
+const allPages = await getCollection('pages');
+const posts = sortByDateDesc(allPosts.filter(isVisible)).map(toPostSummary);
+
+const site = buildSiteMeta(allPages, strings, archiveHref());
+---
+
+<Archive site={site} strings={strings} posts={posts} />

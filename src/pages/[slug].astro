@@ -1,0 +1,47 @@
+---
+import { getCollection, render } from 'astro:content';
+import siteConfig from '../../site.config';
+import { RESERVED_SLUGS } from '../lib/site-config.schema';
+import { buildSiteMeta } from '../lib/theme/site-meta';
+import { absoluteUrl, pageHref } from '../lib/urls';
+import type { PageFull } from '../lib/theme/contract';
+import Page from '../themes/default/layouts/Page.astro';
+import strings from '../themes/default/strings';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+  const sectionIds = new Set(siteConfig.sections.map((s) => s.id));
+
+  for (const page of pages) {
+    if ((RESERVED_SLUGS as readonly string[]).includes(page.id)) {
+      throw new Error(
+        `content/pages/${page.id}.md: slug "${page.id}" collides with a reserved core route (${RESERVED_SLUGS.join(', ')}).`,
+      );
+    }
+    if (sectionIds.has(page.id)) {
+      throw new Error(
+        `content/pages/${page.id}.md: slug "${page.id}" collides with a configured section id.`,
+      );
+    }
+  }
+
+  return pages.map((page) => ({ params: { slug: page.id }, props: { page } }));
+}
+
+const { page } = Astro.props;
+const allPages = await getCollection('pages');
+const { Content } = await render(page);
+
+const href = pageHref(page.id);
+const pageFull: PageFull = {
+  href,
+  title: page.data.title,
+  description: page.data.description,
+  canonicalUrl: absoluteUrl(href),
+  Content,
+};
+
+const site = buildSiteMeta(allPages, strings, href);
+---
+
+<Page site={site} strings={strings} page={pageFull} />

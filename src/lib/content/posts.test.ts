@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { deriveExcerpt } from './posts';
+import { deriveExcerpt, getReadingTimeMinutes } from './posts';
 
 describe('deriveExcerpt', () => {
   it('returns short text unchanged', () => {
@@ -29,5 +29,19 @@ describe('deriveExcerpt', () => {
 
   it('collapses repeated whitespace', () => {
     expect(deriveExcerpt('Line one.\n\n\nLine   two.')).toBe('Line one. Line two.');
+  });
+});
+
+describe('getReadingTimeMinutes', () => {
+  it('rounds to the nearest minute at 200 words/minute', () => {
+    expect(getReadingTimeMinutes('word '.repeat(400))).toBe(2);
+  });
+
+  it('never returns less than one minute for a non-empty body', () => {
+    expect(getReadingTimeMinutes('a few words')).toBe(1);
+  });
+
+  it('treats an empty body as one minute, not zero', () => {
+    expect(getReadingTimeMinutes('')).toBe(1);
   });
 });

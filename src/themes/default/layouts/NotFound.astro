@@ -1,0 +1,24 @@
+---
+import type { SiteMeta, UIStrings } from '../../../lib/theme/contract';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  site: SiteMeta;
+  strings: UIStrings;
+}
+
+const { site, strings } = Astro.props;
+---
+
+<BaseLayout
+  site={site}
+  strings={strings}
+  title={strings.notFound.title}
+  description={strings.notFound.message}
+>
+  <h1>{strings.notFound.title}</h1>
+  <p>{strings.notFound.message}</p>
+  <p>
+    <a href={site.nav[0]?.href ?? '/'}>{strings.notFound.backHome}</a>
+  </p>
+</BaseLayout>

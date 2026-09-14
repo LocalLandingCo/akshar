@@ -1,0 +1,64 @@
+---
+import type { SiteMeta, UIStrings } from '../../../lib/theme/contract';
+import '../base.css';
+import '../tokens.css';
+
+interface Props {
+  site: SiteMeta;
+  strings: UIStrings;
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+}
+
+const { site, strings, title, description, canonicalUrl } = Astro.props;
+const pageTitle = title === site.title ? title : `${title} · ${site.title}`;
+---
+
+<html lang={site.language} dir={site.dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    {site.rssHref && (
+      <link rel="alternate" type="application/rss+xml" title={site.title} href={site.rssHref} />
+    )}
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">
+      {strings.nav.skipToContent}
+    </a>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-title" href={site.nav[0]?.href ?? '/'}>
+          {site.title}
+        </a>
+        <nav class="site-nav" aria-label={strings.nav.homeLabel}>
+          {site.nav.map((item) => (
+            <a href={item.href} aria-current={item.current ? 'page' : undefined}>
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </header>
+    <main id="content">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <span>
+          © {new Date().getFullYear()} {site.author.name}
+        </span>
+        <span>
+          {site.rssHref && <a href={site.rssHref}>{strings.footer.rssLabel}</a>}
+          {' · '}
+          {strings.footer.builtWith}
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>

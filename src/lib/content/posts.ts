@@ -1,4 +1,7 @@
 import type { CollectionEntry } from 'astro:content';
+import siteConfig from '../../../site.config';
+import type { PostSummary } from '../theme/contract';
+import { postHref, sectionHref, tagHref } from '../urls';
 import { parsePostId } from './id';
 
 export type Post = CollectionEntry<'posts'>;
@@ -14,6 +17,30 @@ export function getSlug(post: Post): string {
 /** A post never ships to production while `draft: true` (spec.md §4). */
 export function isPublished(post: Post): boolean {
   return !post.data.draft;
+}
+
+/**
+ * A draft stays previewable locally and in the editor, and is excluded only
+ * from an actual production build (spec.md §4) — `import.meta.env.PROD` is
+ * true for `astro build`, false for `astro dev`. Use this (not
+ * `isPublished` alone) everywhere a set of posts is enumerated: listings
+ * and `getStaticPaths` alike, so a draft's page genuinely isn't built.
+ */
+export function isVisible(post: Post): boolean {
+  return isPublished(post) || !import.meta.env.PROD;
+}
+
+export function sortByDateDesc(posts: Post[]): Post[] {
+  return [...posts].sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+}
+
+/** Every distinct tag across a set of posts, alphabetically. */
+export function getAllTags(posts: Post[]): string[] {
+  const tags = new Set<string>();
+  for (const post of posts) {
+    for (const tag of post.data.tags) tags.add(tag);
+  }
+  return [...tags].sort((a, b) => a.localeCompare(b));
 }
 
 const MARKDOWN_STRIP_PATTERNS: Array<[RegExp, string]> = [
@@ -57,4 +84,37 @@ export function getExcerpt(post: Post): string {
 /** The SEO/share description: explicit override, else the excerpt. */
 export function getDescription(post: Post): string {
   return post.data.description ?? getExcerpt(post);
+}
+
+const WORDS_PER_MINUTE = 200;
+
+/**
+ * Approximate reading time by word count. Whitespace-delimited word
+ * counting is correct for the MVP's primary scripts (Latin, Devanagari);
+ * it undercounts for scripts without spaces between words (CJK), which is
+ * a known limitation rather than a silent wrong answer.
+ */
+export function getReadingTimeMinutes(body: string): number {
+  const words = body.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / WORDS_PER_MINUTE));
+}
+
+/** Resolves a post entry into the plain data a theme layout is allowed to consume. */
+export function toPostSummary(post: Post): PostSummary {
+  const { section, slug } = parsePostId(post.id);
+  const sectionConfig = siteConfig.sections.find((s) => s.id === section);
+  const cover = post.data.cover;
+
+  return {
+    href: postHref(section, slug),
+    title: post.data.title,
+    date: post.data.date,
+    excerpt: getExcerpt(post),
+    section: { id: section, label: sectionConfig?.label ?? section, href: sectionHref(section) },
+    tags: post.data.tags.map((tag) => ({ name: tag, href: tagHref(tag) })),
+    cover: cover ? { src: cover, alt: post.data.coverAlt ?? '' } : undefined,
+    readingTimeMinutes: siteConfig.features.readingTime
+      ? getReadingTimeMinutes(post.body ?? '')
+      : undefined,
+  };
 }

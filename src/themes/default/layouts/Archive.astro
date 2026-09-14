@@ -1,0 +1,57 @@
+---
+import type { PostSummary, SiteMeta, UIStrings } from '../../../lib/theme/contract';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  site: SiteMeta;
+  strings: UIStrings;
+  /** Already sorted newest-first. */
+  posts: PostSummary[];
+}
+
+const { site, strings, posts } = Astro.props;
+
+const byYear = new Map<number, PostSummary[]>();
+for (const post of posts) {
+  const year = post.date.getFullYear();
+  const group = byYear.get(year);
+  if (group) {
+    group.push(post);
+  } else {
+    byYear.set(year, [post]);
+  }
+}
+---
+
+<BaseLayout
+  site={site}
+  strings={strings}
+  title={strings.archive.title}
+  description={strings.archive.title}
+>
+  <h1>{strings.archive.title}</h1>
+  {posts.length === 0 ? (
+    <p class="empty-state">{strings.common.noPostsYet}</p>
+  ) : (
+    [...byYear.entries()].map(([year, yearPosts]) => (
+      <section>
+        <h2>{year}</h2>
+        <ul class="post-list">
+          {yearPosts.map((post) => (
+            <li class="post-list__item">
+              <a href={post.href}>{post.title}</a>
+              <div class="post-meta">
+                <time datetime={post.date.toISOString()}>
+                  {new Intl.DateTimeFormat(site.language, { dateStyle: 'medium' }).format(
+                    post.date,
+                  )}
+                </time>
+                <a href={post.section.href}>{post.section.label}</a>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  )}
+</BaseLayout>

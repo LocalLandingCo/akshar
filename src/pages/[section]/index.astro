@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import siteConfig from '../../../site.config';
+import { getSection, isVisible, sortByDateDesc, toPostSummary } from '../../lib/content/posts';
+import { buildSiteMeta } from '../../lib/theme/site-meta';
+import { sectionHref } from '../../lib/urls';
+import SectionIndex from '../../themes/default/layouts/SectionIndex.astro';
+import strings from '../../themes/default/strings';
+
+export function getStaticPaths() {
+  return siteConfig.sections.map((section) => ({ params: { section: section.id } }));
+}
+
+const { section: sectionId } = Astro.params;
+// Safe: getStaticPaths only ever generates a path for a configured section.
+const sectionConfig = siteConfig.sections.find((s) => s.id === sectionId)!;
+
+const allPosts = await getCollection('posts');
+const allPages = await getCollection('pages');
+const posts = sortByDateDesc(
+  allPosts.filter((post) => isVisible(post) && getSection(post) === sectionId),
+).map(toPostSummary);
+
+const site = buildSiteMeta(allPages, strings, sectionHref(sectionId));
+---
+
+<SectionIndex
+  site={site}
+  strings={strings}
+  section={{
+    id: sectionConfig.id,
+    label: sectionConfig.label,
+    href: sectionHref(sectionId),
+    description: sectionConfig.description,
+  }}
+  posts={posts}
+/>

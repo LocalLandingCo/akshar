@@ -1,0 +1,39 @@
+---
+import { getCollection, render } from 'astro:content';
+import {
+  getDescription,
+  getSection,
+  getSlug,
+  isVisible,
+  toPostSummary,
+} from '../../lib/content/posts';
+import { buildSiteMeta } from '../../lib/theme/site-meta';
+import { absoluteUrl } from '../../lib/urls';
+import type { PostFull } from '../../lib/theme/contract';
+import Post from '../../themes/default/layouts/Post.astro';
+import strings from '../../themes/default/strings';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.filter(isVisible).map((post) => ({
+    params: { section: getSection(post), slug: getSlug(post) },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const allPages = await getCollection('pages');
+const { Content } = await render(post);
+
+const summary = toPostSummary(post);
+const postFull: PostFull = {
+  ...summary,
+  Content,
+  description: getDescription(post),
+  canonicalUrl: absoluteUrl(summary.href),
+};
+
+const site = buildSiteMeta(allPages, strings, summary.href);
+---
+
+<Post site={site} strings={strings} post={postFull} />
