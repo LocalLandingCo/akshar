@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+  Synthetic Blogger/Google Takeout Atom export for the import pipeline
+  (docs/import.md, spec.md §18). Every name and address below is
+  fabricated. Covers: a label (→ tag), a script tag, a tracking pixel, an
+  embed, a comment entry (must never be imported), an image with no alt
+  text, a draft, a Devanagari post, a page, and a broken image URL.
+-->
+<feed xmlns='http://www.w3.org/2005/Atom'
+      xmlns:app='http://purl.org/atom/app#'
+      xmlns:blogger='http://schemas.google.com/blogger/2018'
+      xmlns:thr='http://purl.org/syndication/thread/1.0'>
+  <id>tag:blogger.com,1999:blog-1234567890123456789</id>
+  <updated>2026-01-01T00:00:00.000-08:00</updated>
+  <title type='text'>Example Blogger Blog</title>
+  <link rel='alternate' type='text/html' href='https://example-writer.blogspot.test/'/>
+  <author>
+    <name>Jane Writer</name>
+    <email>noreply@blogger.com</email>
+  </author>
+
+  <!-- Published post: label, script tag, tracking pixel, embed, image with no alt. -->
+  <entry>
+    <id>tag:blogger.com,1999:blog-1234567890123456789.post-1111111111111111111</id>
+    <published>2024-03-10T14:30:00.000-08:00</published>
+    <updated>2024-03-10T14:30:00.000-08:00</updated>
+    <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/blogger/2018/kind#post'/>
+    <category scheme='http://www.blogger.com/atom/ns#' term='Essays'/>
+    <category scheme='http://www.blogger.com/atom/ns#' term='ownership'/>
+    <title type='text'>On Owning Your Words</title>
+    <content type='html'>&lt;p&gt;Every piece you publish on a platform is a small negotiation you didn't get to read the terms of.&lt;/p&gt;
+&lt;script&gt;trackVisit('on-owning-your-words');&lt;/script&gt;
+&lt;img src="https://tracker.example-writer.blogspot.test/pixel.gif" width="1" height="1" alt="" /&gt;
+&lt;p&gt;A video that explains it better than I can:&lt;/p&gt;
+&lt;iframe src="https://www.youtube.com/embed/fake123example"&gt;&lt;/iframe&gt;
+&lt;img src="https://example-writer.blogspot.test/img/cover.jpg" alt="" /&gt;</content>
+    <link rel='alternate' type='text/html' href='https://example-writer.blogspot.test/2024/03/on-owning-your-words.html' title='On Owning Your Words'/>
+    <author>
+      <name>Jane Writer</name>
+      <email>noreply@blogger.com</email>
+    </author>
+    <thr:total>1</thr:total>
+  </entry>
+
+  <!-- A comment on the post above — must never be imported. -->
+  <entry>
+    <id>tag:blogger.com,1999:blog-1234567890123456789.post-1111111111111111111.comment-2222222222222222222</id>
+    <published>2024-03-11T09:00:00.000-08:00</published>
+    <updated>2024-03-11T09:00:00.000-08:00</updated>
+    <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/blogger/2018/kind#comment'/>
+    <title type='text'>Lovely piece</title>
+    <content type='html'>Lovely piece — really made me think.</content>
+    <author>
+      <name>A Reader</name>
+      <email>reader@example-writer.blogspot.test</email>
+    </author>
+    <thr:in-reply-to href='https://example-writer.blogspot.test/2024/03/on-owning-your-words.html'/>
+  </entry>
+
+  <!-- Draft, held back on import. -->
+  <entry>
+    <id>tag:blogger.com,1999:blog-1234567890123456789.post-3333333333333333333</id>
+    <published>2026-01-02T00:00:00.000-08:00</published>
+    <updated>2026-01-02T00:00:00.000-08:00</updated>
+    <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/blogger/2018/kind#post'/>
+    <category scheme='http://www.blogger.com/atom/ns#' term='Essays'/>
+    <title type='text'>A Draft in Progress</title>
+    <content type='html'>&lt;p&gt;Not ready yet.&lt;/p&gt;</content>
+    <app:control>
+      <app:draft>yes</app:draft>
+    </app:control>
+    <author>
+      <name>Jane Writer</name>
+      <email>noreply@blogger.com</email>
+    </author>
+  </entry>
+
+  <!-- Devanagari post. -->
+  <entry>
+    <id>tag:blogger.com,1999:blog-1234567890123456789.post-4444444444444444444</id>
+    <published>2024-07-12T08:00:00.000-08:00</published>
+    <updated>2024-07-12T08:00:00.000-08:00</updated>
+    <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/blogger/2018/kind#post'/>
+    <category scheme='http://www.blogger.com/atom/ns#' term='Poems'/>
+    <category scheme='http://www.blogger.com/atom/ns#' term='मराठी'/>
+    <title type='text'>पाऊस</title>
+    <content type='html'>&lt;p&gt;आभाळ आज जड झालं,&lt;br /&gt;
+शब्दांआधी पाऊस आला.&lt;/p&gt;
+&lt;p&gt;मातीचा वास घरात शिरला,&lt;br /&gt;
+खिडकीतून एक ओळ लिहिली गेली.&lt;/p&gt;</content>
+    <link rel='alternate' type='text/html' href='https://example-writer.blogspot.test/2024/07/blog-post.html' title='पाऊस'/>
+    <author>
+      <name>Jane Writer</name>
+      <email>noreply@blogger.com</email>
+    </author>
+  </entry>
+
+  <!-- A post whose body references an image URL that no longer resolves. -->
+  <entry>
+    <id>tag:blogger.com,1999:blog-1234567890123456789.post-5555555555555555555</id>
+    <published>2025-06-03T10:00:00.000-08:00</published>
+    <updated>2025-06-03T10:00:00.000-08:00</updated>
+    <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/blogger/2018/kind#post'/>
+    <category scheme='http://www.blogger.com/atom/ns#' term='Essays'/>
+    <title type='text'>Old Photos</title>
+    <content type='html'>&lt;p&gt;From a box I found in the attic.&lt;/p&gt;
+&lt;img src="https://example-writer.blogspot.test/img/does-not-exist.jpg" alt="An old photograph" /&gt;</content>
+    <link rel='alternate' type='text/html' href='https://example-writer.blogspot.test/2025/06/old-photos.html' title='Old Photos'/>
+    <author>
+      <name>Jane Writer</name>
+      <email>noreply@blogger.com</email>
+    </author>
+  </entry>
+
+  <!-- A page. -->
+  <entry>
+    <id>tag:blogger.com,1999:blog-1234567890123456789.page-6666666666666666666</id>
+    <published>2024-01-01T00:00:00.000-08:00</published>
+    <updated>2024-01-01T00:00:00.000-08:00</updated>
+    <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/blogger/2018/kind#page'/>
+    <title type='text'>About</title>
+    <content type='html'>&lt;p&gt;I write about owning what you make.&lt;/p&gt;</content>
+    <link rel='alternate' type='text/html' href='https://example-writer.blogspot.test/p/about.html' title='About'/>
+    <author>
+      <name>Jane Writer</name>
+      <email>noreply@blogger.com</email>
+    </author>
+  </entry>
+
+</feed>

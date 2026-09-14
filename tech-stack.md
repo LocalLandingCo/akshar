@@ -495,6 +495,51 @@ MIT imposes the fewest conditions on a writer or an agency deploying a site, whi
 
 ---
 
+### ADR-13 — Import pipeline dependencies
+
+#### Context
+
+`spec.md` §18 (content import) needs four things the rest of the codebase
+doesn't: HTML→Markdown conversion, HTML sanitization, ZIP/CSV extraction
+(Substack's export format), and XML parsing (WordPress WXR, Blogger's Atom
+export). Recorded per Phase I-0's checklist, against the dependency
+strategy in §4 below — every direct dependency justified in one sentence.
+
+#### Decisions
+
+| Need                                                            | Package                            | Why this one                                                                                                                                                                                                                                                                                                                             |
+| --------------------------------------------------------------- | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| HTML → CommonMark + GFM                                         | `turndown` + `turndown-plugin-gfm` | The standard, actively maintained HTML-to-Markdown converter; the GFM plugin adds tables/strikethrough/task lists, matching the CommonMark+GFM the rest of the content model already commits to (`spec.md` §5). Writing an HTML→Markdown converter by hand is exactly the kind of scaffolding `mission.md` warns against building twice. |
+| Stripping scripts/iframes/forms/inline styles before conversion | `cheerio`                          | A real HTML parser (not regex) to remove dangerous nodes and attributes _before_ turndown ever sees them — turndown's own job is conversion, not sanitization, and letting an unknown tag's text content silently bleed through is exactly the "raw HTML in a browser CMS" injection surface `spec.md` §5/§14 rules out.                 |
+| WordPress WXR and Blogger Atom (both XML)                       | `fast-xml-parser`                  | Already a dependency (Phase 6, validating the generated sitemap/RSS) — reusing it here instead of adding a second XML parser is the direct application of "no dependency at all over either" (`tech-stack.md` §4).                                                                                                                       |
+| Substack's export (ZIP: CSV + HTML files)                       | `adm-zip`                          | Substack exports are small (a personal archive, not gigabytes); a simple synchronous reader is proportionate and avoids a streaming API's extra surface for a one-time local command.                                                                                                                                                    |
+| Substack's post index (CSV)                                     | `csv-parse`                        | Titles and excerpts routinely contain commas and quotes; a hand-rolled `split(',')` parser would silently corrupt exactly the fields a writer most needs preserved correctly. A small, well-tested parser for a format with real quoting rules is worth it.                                                                              |
+
+Image fetching uses the platform's built-in `fetch`; content-hash
+deduplication uses Node's built-in `crypto` — neither needs a package.
+
+#### Reasoning
+
+Five new dependencies for a feature with four genuinely distinct format
+problems (HTML, XML, ZIP, CSV) is proportionate, not scope creep — each
+one is solving a real parsing problem this project has no existing tool
+for, unlike, say, adding a second XML parser when `fast-xml-parser`
+already does the job. None of these run in the reader's browser or
+anywhere in the build/deploy path; they execute only inside the local
+`import` command, which itself is not part of the deployed site
+(`spec.md` §18 — "not part of the site build... not a service").
+
+#### Trade-offs
+
+**Gained:** correct HTML/XML/ZIP/CSV handling without hand-rolling four
+parsers, which is exactly the trap [REF]'s own history warns about.
+
+**Given up:** five more entries in the dependency tree — bounded, because
+every one of them is a devDependency-shaped, import-command-only concern,
+never shipped to a reader and never part of `npm run build`.
+
+---
+
 ## 3. Developer tooling
 
 Chosen to be boring, standard, and low-friction for outside contributors.
