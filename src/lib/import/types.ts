@@ -99,6 +99,7 @@ export interface ImportSummary {
   imagesNeedingAttention: ReportedImage[];
   drops: ReportedDrop[];
   slugCollisions: SlugCollision[];
-  suggestedSections: Array<{ category: string; suggestedId: string; postCount: number }>;
+  /** Suggested sections aren't tracked here — src/lib/import/report.ts derives them fresh
+   * from every category seen across the run (`suggestSectionsSnippet`), passed in separately. */
   urlMap: Array<{ oldUrl: string; newPath: string }>;
 }
