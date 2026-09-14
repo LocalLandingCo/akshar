@@ -14,3 +14,5 @@ no page, no door, no argument.
 
 This is the only hour that belongs
 entirely to no one.
+
+![A cup of tea on a windowsill in early morning light](./a-quiet-hour-cover.jpg)

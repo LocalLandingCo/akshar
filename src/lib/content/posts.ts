@@ -112,7 +112,9 @@ export function toPostSummary(post: Post): PostSummary {
     excerpt: getExcerpt(post),
     section: { id: section, label: sectionConfig?.label ?? section, href: sectionHref(section) },
     tags: post.data.tags.map((tag) => ({ name: tag, href: tagHref(tag) })),
-    cover: cover ? { src: cover, alt: post.data.coverAlt ?? '' } : undefined,
+    cover: cover
+      ? { src: cover, alt: post.data.coverAlt ?? '', width: cover.width, height: cover.height }
+      : undefined,
     readingTimeMinutes: siteConfig.features.readingTime
       ? getReadingTimeMinutes(post.body ?? '')
       : undefined,

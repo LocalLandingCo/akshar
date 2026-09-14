@@ -3,6 +3,8 @@ title: On Owning Your Words
 date: 2026-01-14
 tags: [ownership, writing]
 excerpt: A platform can change its terms, its algorithm, or its existence. A folder of Markdown files cannot.
+cover: ./on-owning-your-words-cover.jpg
+coverAlt: A pair of hands turning the pages of a paper notebook.
 ---
 
 Every piece you publish on a platform is a small negotiation you didn't get to read the terms of.
